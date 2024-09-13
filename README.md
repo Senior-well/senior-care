@@ -70,3 +70,5 @@ git commit -m 'commit message'
 ```
 git push origin -u branchName
 ```
+
+Tips: `Shift + Alt + F` for automatic align code.
