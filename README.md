@@ -1,4 +1,11 @@
+<h1 align="center"> What is a Senior Care app? </h1>
+
+`An app to support elder with their blood clotting, high blood pressure`
+
+<br>
+
 <h1 align="center"> Required Node >= 14 </h1>
+
 
 ### Check the version on cmd or vs code terminal
 ```
