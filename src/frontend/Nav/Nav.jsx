@@ -1,5 +1,5 @@
 import React from "react";
-import './Nav.css';
+import './Nav.sass';
 import { menuData } from "../../backend/MenuData/menuData";
 import { MenuItems } from "../Components/MenuItems/MenuItems";
 
