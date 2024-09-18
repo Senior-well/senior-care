@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Dropdown } from "../../Component/DropDownNav/DropDown";
+import { Dropdown } from "../DropDownNav/DropDown";
 
 export const MenuItems = ({ items }) => {
     const [dropDown, setdropDown] = useState(false);
