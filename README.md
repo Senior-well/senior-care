@@ -71,4 +71,10 @@ git commit -m 'commit message'
 git push origin -u branchName
 ```
 
-Tips: `Shift + Alt + F` for automatic align code.
+Tips: 
+- `Shift + Alt + F` for automatic align code.
+- Some case the node_modules doesn't work out (not install all of independencies in the package.json), do:
+
+```
+npm install --savedev
+```
