@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-content">
         <div className="footer-section logo">
-        <img src="../images/logo.png" alt="Senior Well Logo" />
+          <img src="../images/logo.png" alt="Senior Well Logo" />
         </div>
 
         <div className="footer-section">
@@ -39,18 +39,18 @@ const Footer = () => {
         <div className="footer-section follow-us">
           <h4>Follow us</h4>
           <div className="social-icons">
-          <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
-      <i className="fab fa-linkedin"></i>
-    </a>
-    <a href="https://github.com" target="_blank" rel="noopener noreferrer">
-      <i className="fab fa-github"></i>
-    </a>
-    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-      <i className="fab fa-twitter"></i>
-      </a>
+            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-linkedin"></i>
+            </a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-github"></i>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-twitter"></i>
+            </a>
+          </div>
+        </div>
       </div>
-  </div>
-</div>
 
       <div className="footer-bottom">
         <p>&copy; Senior Well 2024</p>
