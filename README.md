@@ -4,7 +4,7 @@
 
 <br>
 
-<h1 align="center"> Required Node >= 14 </h1>
+<h1 align="center"> Required Node >= 14.0 </h1>
 
 
 ### Check the version on cmd or vs code terminal
@@ -33,7 +33,7 @@ npm install
 ```
 
 ```
-npm start
+npm run dev
 ```
 
 <h3 align="center"> Good luck! 😎 </h3>
@@ -71,4 +71,10 @@ git commit -m 'commit message'
 git push origin -u branchName
 ```
 
-Tips: `Shift + Alt + F` for automatic align code.
+Tips: 
+- `Shift + Alt + F` for automatic align code.
+- Some case the node_modules doesn't work out (not install all of independencies in the package.json), do:
+
+```
+npm install --savedev
+```

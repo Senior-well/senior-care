@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-import { Dropdown } from "../DropDownNav/DropDown";
+import Dropdown from "../DropDownNav/DropDown";
 
-export const MenuItems = ({ items }) => {
-    const [dropDown, setdropDown] = useState(false);
-    const toggleDropdown = () => {
-        setdropDown((prev) => !prev);
-    }
+const MenuItems = ({ items }) => {
+    const [dropdown, setDropdown] = useState(false);
 
     return (
         <li>
@@ -14,12 +11,15 @@ export const MenuItems = ({ items }) => {
                     <button
                         type="button"
                         aria-haspopup="menu"
-                        aria-expanded={dropDown ? "true" : "false"}
-                        onClick={toggleDropdown}
+                        aria-expanded={dropdown ? "true" : "false"}
+                        onClick={() => setDropdown((prev) => !prev)}
                     >
                         {items.title}{' '}
                     </button>
-                    <Dropdown submenus={items.submenus} dropdown={dropDown} />
+                    <Dropdown
+                        submenus={items.submenus}
+                        dropdown={dropdown}
+                    />
                 </>
             ) : (
                 <a href={items.url}>{items.title}</a>
@@ -28,3 +28,5 @@ export const MenuItems = ({ items }) => {
         </li>
     )
 }
+
+export default MenuItems;

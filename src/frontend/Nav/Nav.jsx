@@ -1,7 +1,7 @@
 import React from "react";
 import './Nav.sass';
 import { menuData } from "../../backend/MenuData/menuData";
-import { MenuItems } from "../Components/MenuItems/MenuItems";
+import MenuItems from "../Components/MenuItems/MenuItems";
 
 export default function Nav() {
     return (
