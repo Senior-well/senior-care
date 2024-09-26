@@ -4,7 +4,7 @@
 
 <br>
 
-<h1 align="center"> Required Node >= 14 </h1>
+<h1 align="center"> Required Node >= 14.0 </h1>
 
 
 ### Check the version on cmd or vs code terminal
@@ -33,7 +33,7 @@ npm install
 ```
 
 ```
-npm start
+npm run dev
 ```
 
 <h3 align="center"> Good luck! 😎 </h3>
