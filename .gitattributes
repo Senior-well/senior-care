@@ -1,16 +1,10 @@
-# Set default behavior to automatically normalize line endings
+# Handle line endings automatically for text files
 * text=auto
 
-# Explicitly declare text files you want to always have normalized LF endings
-*.js text eol=lf
-*.jsx text eol=lf
-*.json text eol=lf
-*.css text eol=lf
-*.html text eol=lf
+# Ensure that all markdown files always use LF line endings
 *.md text eol=lf
 
-# Ensure binary files are never modified
+# Handle binary files (no modifications)
 *.png binary
 *.jpg binary
 *.gif binary
-*.exe binary
