@@ -1,13 +1,14 @@
 import React from "react";
+import MenuItems from "../MenuItems/MenuItems";
 
-export const Dropdown = ({ submenus, dropdown }) => {
+const Dropdown = ({ submenus, dropdown }) => {
     return (
         <ul className={`dropdown ${dropdown ? "show" : ""}`}>
             {submenus.map((submenu, index) => (
-                <li key={index} className="menu-items">
-                    <a href={submenu.url}>{submenu.title}</a>
-                </li>
+                <MenuItems items={submenu} key={index} />
             ))}
         </ul>
     );
 }
+
+export default Dropdown;
