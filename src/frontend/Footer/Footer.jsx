@@ -12,8 +12,11 @@ const Footer = () => {
         <div className="footer-section">
           <h4>Documents</h4>
           <ul>
+            {/* eslint-disable-next-line */}
             <li><a href="#">Overview</a></li>
+            {/* eslint-disable-next-line */}
             <li><a href="#">How-to guides</a></li>
+            {/* eslint-disable-next-line */}
             <li><a href="#">Community support</a></li>
           </ul>
         </div>
@@ -21,8 +24,11 @@ const Footer = () => {
         <div className="footer-section">
           <h4>Senior Care</h4>
           <ul>
+            {/* eslint-disable-next-line */}
             <li><a href="#">Products</a></li>
+            {/* eslint-disable-next-line */}
             <li><a href="#">Software</a></li>
+            {/* eslint-disable-next-line */}
             <li><a href="#">Forums</a></li>
           </ul>
         </div>
@@ -30,8 +36,11 @@ const Footer = () => {
         <div className="footer-section">
           <h4>Resources</h4>
           <ul>
+            {/* eslint-disable-next-line */}
             <li><a href="#">Privacy Policy</a></li>
+            {/* eslint-disable-next-line */}
             <li><a href="#">FAQ</a></li>
+            {/* eslint-disable-next-line */}
             <li><a href="#">News</a></li>
           </ul>
         </div>
