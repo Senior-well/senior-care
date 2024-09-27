@@ -1,0 +1,70 @@
+// styles.sass
+.App
+  display: flex
+  flex-direction: column
+  min-height: 100vh // Ensure the app takes at least the full height of the viewport
+
+.Main-content
+  flex: 1 // Allow the main content to grow and take available space
+
+.footer
+  background-color: #000
+  color: #fff
+  padding: 20px
+  text-align: center
+  font-family: 'Arial', sans-serif
+
+  .footer-content
+    display: flex
+    justify-content: space-between
+    flex-wrap: wrap
+    margin-bottom: 20px
+
+    .footer-section
+      flex: 1
+      margin: 10px
+
+      h4
+        font-size: 1.2rem
+        margin-bottom: 10px
+        font-weight: bold
+
+      ul
+        list-style: none
+        padding: 0
+
+        li
+          margin: 5px 0
+
+          a
+            color: #fff
+            text-decoration: none
+
+            &:hover
+              text-decoration: underline
+
+    .logo
+      img
+        height: 60px
+        margin-bottom: 10px
+
+    .follow-us
+      .social-icons
+        display: flex
+        justify-content: center
+
+        a
+          color: #fff
+          margin: 0 10px
+          font-size: 1.5rem
+
+          &:hover
+            color: #007bff
+
+  .footer-bottom
+    border-top: 1px solid #333
+    padding-top: 10px
+
+    p
+      margin: 0
+      font-size: 0.9rem
