@@ -8,7 +8,7 @@
 
 
 ### Check the version on cmd or vs code terminal
-```
+```bash
 node -v
 ```
 
@@ -16,23 +16,61 @@ node -v
 
 <h1 align="center"> How to start? </h1>
 
-```
+```bash
 git clone https://github.com/Senior-well/senior-care.git
 ```
 
 <h3 align="center"> Then </h3>
 
-```
+```bash
 cd senior-care
 ```
 
 <h3 align="center"> And </h3>
 
-```
+```bash
 npm install
 ```
 
+```bash
+npm run dev
 ```
+
+<br>
+
+<h1 align="center"> Want to make it into your own repository?</h1>
+<img src="./src/images/Forking.png" alt="forking" align="center">
+
+<h3 align="center"> Then go to your repository like the image below to copy the link </h3>
+<img src="./src/images/ForkingRepositoryLocal.png" alt="Forking repository" align="center">
+
+<h3 align="center"> Created a new folder and open it in VsCode then in the terminal do:</h3>
+
+```bash
+git clone https://github.com/'YourGithubName'/senior-care.git
+```
+```bash
+cd senior-care
+```
+```bash
+npm install
+```
+
+<h3 align="center"> How to connect to the remote origin branch in Senior Care?</h3>
+
+```bash
+git remote add upstream https://github.com/Senior-well/senior-care.git 
+```
+
+### Retrieve all the branches from the Senior Care
+
+```bash
+git fetch upstream
+```
+```bash
+git checkout remotes/origin/'branchname'
+```
+```bash
 npm run dev
 ```
 
