@@ -1,23 +1,30 @@
 $displayFlex: flex
 $flexWrap: wrap
-$fontSize: 20px 
+$fontSize: 20px
 
-.Nav 
+.Nav
     display: $displayFlex
-    flex-wrap: $flexWrap   
+    flex-wrap: $flexWrap
 
-
-.Nav ul li  
+.Nav ul li
     display: inline
     list-style: none
-    margin: 0 20px 
+    margin: 0 20px
     letter-spacing: 1px
 
-
-.Nav ul li a 
+.Nav ul li a
     color: white
     text-decoration: none
     font-size: $fontSize
     margin: 0 10px
     transition: 0.5s linear
+
+.dropdown
+    display: none
+    opacity: 0
+    transition: opacity 0.5s ease, display 0.5s ease
+
+.dropdown.show
+    display: block
+    opacity: 1
 

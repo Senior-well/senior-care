@@ -4,15 +4,22 @@ import Dropdown from "../DropDownNav/DropDown";
 const MenuItems = ({ items }) => {
     const [dropdown, setDropdown] = useState(false);
 
+    const mouseEnterDropdown = () => {
+        setDropdown(true);
+    };
+
+    const mouseLeaveDropdown = () => {
+        setDropdown(false);
+    };
+
     return (
-        <li>
+        <li onMouseEnter={mouseEnterDropdown} onMouseLeave={mouseLeaveDropdown}>
             {items.submenus ? (
                 <>
                     <button
                         type="button"
                         aria-haspopup="menu"
                         aria-expanded={dropdown ? "true" : "false"}
-                        onClick={() => setDropdown((prev) => !prev)}
                     >
                         {items.title}{' '}
                     </button>
