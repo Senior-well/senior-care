@@ -4,8 +4,12 @@ export const menuData = [
         url: '/home',
     },
     {
+        title: 'About us',
+        url: '/about-us',
+    },
+    {
         title: 'Features',
-        submenu: [
+        submenus: [
             {
                 title: 'Medication & Health Monitoring',
                 url: '/features/medication-and-health-monitoring',
@@ -26,7 +30,7 @@ export const menuData = [
     },
     {
         title: 'Products',
-        submenu: [
+        submenus: [
             {
                 title: 'Overview',
                 url: '/products/overview',
@@ -36,14 +40,10 @@ export const menuData = [
                 url: '/products/software',
             },
             {
-                title: 'Hardware',
-                url: '/products/hardware',
+                title: 'Pricing and Plans',
+                url: '/products/pricing-and-plans',
             },
         ]
-    },
-    {
-        title: 'Team',
-        url: '/team',
     },
     {
         title: 'Contact',
