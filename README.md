@@ -74,6 +74,17 @@ git checkout remotes/origin/'branchname'
 npm run dev
 ```
 
+<br>
+
+<h1 align="center">How to serve a static producution build of web application on a local or remote server?</h1>
+
+```bash
+npm run build
+```
+```bash   
+serve -s build
+```
+
 <h3 align="center"> Good luck! 😎 </h3>
 
 # Noted:

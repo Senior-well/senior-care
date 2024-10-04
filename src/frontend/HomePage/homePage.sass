@@ -1,0 +1,43 @@
+$displayFlex: flex
+$flexWrap: wrap
+
+.homePage
+    display: $displayFlex
+    flex-wrap: $flexWrap
+    width: 100vw
+    height: 60vh
+    background: #395975
+    margin-top: 150px
+    border-radius: 20px
+
+.homePage .headerHP
+    display: $displayFlex
+    flex-wrap: $flexWrap
+    justify-content: center
+    margin: 20px 30px
+    width: 30vw
+    background: red
+
+.homePage .headerHP h1,
+.homePage .headerHP p
+    width: 20vw
+
+.homePage .headerHP h1
+    font-size: 30px
+
+.homePage .headerHP p
+    font-size: 16px
+
+.homePage .headerHP button
+    padding: 10px
+    border-radius: 20px
+    margin: 20px
+    width: 10vw
+
+.homePage .headerHP button:nth-child(odd)
+    border: 0px
+
+.homePage .headerHP button:nth-child(even)
+    color: white
+    background: transparent 
+    border: 1px white solid
