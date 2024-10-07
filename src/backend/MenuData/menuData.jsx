@@ -1,11 +1,11 @@
 export const menuData = [
     {
-        title: 'Home',
-        url: '/home',
+        title: 'Industries',
+        url: '/industries',
     },
     {
-        title: 'About us',
-        url: '/about-us',
+        title: 'Resources',
+        url: '/Resources',
     },
     {
         title: 'Features',

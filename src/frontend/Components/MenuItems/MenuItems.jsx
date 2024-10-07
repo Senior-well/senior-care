@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Dropdown from "../DropDownNav/DropDown";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const MenuItems = ({ items }) => {
     const [dropdown, setDropdown] = useState(false);
@@ -13,7 +14,7 @@ const MenuItems = ({ items }) => {
     };
 
     return (
-        <li onMouseEnter={mouseEnterDropdown} onMouseLeave={mouseLeaveDropdown}>
+        <li onMouseEnter={mouseEnterDropdown} onMouseLeave={mouseLeaveDropdown} className="menuData">
             {items.submenus ? (
                 <>
                     <button
@@ -21,6 +22,7 @@ const MenuItems = ({ items }) => {
                         aria-haspopup="menu"
                         aria-expanded={dropdown ? "true" : "false"}
                     >
+                        {items.icon && <FontAwesomeIcon icon={items.icon} />}
                         {items.title}{' '}
                     </button>
                     <Dropdown
@@ -29,7 +31,7 @@ const MenuItems = ({ items }) => {
                     />
                 </>
             ) : (
-                <a href={items.url}>{items.title}</a>
+                <a href={items.url}>{items.icon && <FontAwesomeIcon icon={items.icon} />}{items.title}</a>
             )
             }
         </li>
