@@ -39,10 +39,10 @@ npm run dev
 <br>
 
 <h1 align="center"> Want to make it into your own repository?</h1>
-<img src="./src/images/Forking.png" alt="forking" align="center">
+<img src="./src/images/README/Forking.png" alt="forking" align="center">
 
 <h3 align="center"> Then go to your repository like the image below to copy the link </h3>
-<img src="./src/images/ForkingRepositoryLocal.png" alt="Forking repository" align="center">
+<img src="./src/images/README/ForkingRepositoryLocal.png" alt="Forking repository" align="center">
 
 <h3 align="center"> Created a new folder and open it in VsCode then in the terminal do:</h3>
 

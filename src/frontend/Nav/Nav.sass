@@ -1,23 +1,89 @@
 $displayFlex: flex
 $flexWrap: wrap
 $fontSize: 20px
+$borderSize: 0.1vh
+$backGroundColor: #0e0d2b
+$backgroundButton: linear-gradient(to right,#1B1A55, purple)
+$borderColor: #605db0
 
 .Nav
     display: $displayFlex
     flex-wrap: $flexWrap
+    border-top: $borderSize solid $borderColor
+    border-bottom: $borderSize solid $borderColor
+    background: $backGroundColor
 
-.Nav ul li
+.Nav div
+    display: block
+    width: 100vw
+
+.Nav div .user
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+    border-bottom: $borderSize solid $borderColor
+
+.Nav div .menu
+    display: flex
+    flex-wrap: wrap
+    margin: 20px 0
+    align-content: center
+
+.Nav div .menu .menuData
+    display: flex
+    align-items: center
+
+.Nav div .menu .menuData button
+    color: inherit
+    font-size: 20px
+    background-color: transparent
+    border: none
+
+.Nav div .menu #magnify
+    display: flex
+
+:is(.Nav div .menu #demo,.Nav div .menu #started) button
+    padding: 15px
+    color: inherit
+    font-size: inherit
+    border: none
+    background-color: transparent
+    border: 1px solid white
+    cursor: pointer
+    width: 100%
+    display: flex
+    align-content: center
+    justify-content: center
+    border-radius: 20px
+    width: 150px
+
+.Nav div .menu #started button
+    background: $backgroundButton
+
+.Nav div .menu li .searchBar
+    border: 1px solid white
+    padding: 10px 200px 10px 20px
+    border-radius: 20px
+
+.Nav div .user li,
+.Nav div .menu li
     display: inline
     list-style: none
     margin: 0 20px
     letter-spacing: 1px
 
-.Nav ul li a
+.Nav div .user li a,
+.Nav div .menu li a
     color: white
     text-decoration: none
-    font-size: $fontSize
     margin: 0 10px
     transition: 0.5s linear
+
+.Nav div .user li a
+    font-size: $fontSize - 5px
+
+.Nav div .menu li a
+    font-size: $fontSize
 
 .dropdown
     display: none

@@ -1,43 +1,87 @@
 $displayFlex: flex
 $flexWrap: wrap
+$displayCenter: center
+$backgroundColor: linear-gradient(#1B1A55, purple)
 
 .homePage
     display: $displayFlex
     flex-wrap: $flexWrap
-    width: 100vw
-    height: 60vh
-    background: #395975
-    margin-top: 150px
-    border-radius: 20px
+    height: 600px
+    background: $backgroundColor
 
 .homePage .headerHP
     display: $displayFlex
     flex-wrap: $flexWrap
-    justify-content: center
+    justify-content: $displayCenter
+    align-items: $displayCenter
     margin: 20px 30px
     width: 30vw
-    background: red
 
-.homePage .headerHP h1,
-.homePage .headerHP p
+.homePage .headerHP div h1,
+.homePage .headerHP div p
     width: 20vw
+    word-spacing: 3px
 
 .homePage .headerHP h1
     font-size: 30px
 
-.homePage .headerHP p
+.homePage .headerHP div p
     font-size: 16px
 
 .homePage .headerHP button
+    display: $displayFlex
+    flex-wrap: $flexWrap 
     padding: 10px
     border-radius: 20px
-    margin: 20px
-    width: 10vw
-
-.homePage .headerHP button:nth-child(odd)
-    border: 0px
+    margin-right: 20px
+    width: 10vw 
+    height: 40px
+    justify-content: $displayCenter
+    align-items: $displayCenter
+    font-weight: bold
 
 .homePage .headerHP button:nth-child(even)
+    border: 0px
+    margin-right: 30px 
+    color: #10151F
+    transition: 0.5s
+
+.homePage .headerHP button:nth-child(odd)
     color: white
     background: transparent 
-    border: 1px white solid
+    border: 2px white solid
+    transition: 0.5s
+
+.homePage .headerHP button:nth-child(even):hover,
+.homePage .headerHP button:nth-child(odd):hover
+    transform: scale(1.1)
+
+.homePage .imgHP
+    display: $displayFlex
+    flex-wrap: $flexWrap
+    justify-content: center
+    align-items: center 
+    margin-left: 25vw
+    width: 25vw
+
+=animation($animation, $duration, $method, $times)
+    animation: $animation $duration $method $times
+
+=keyframes($name)
+    @keyframes #{$name}
+        @content
+        
++keyframes(fade)
+        0%
+            opacity: 1
+        50% 
+            opacity: 0.5
+        100%
+            opacity: 1        
+
+.homePage .imgHP img
+    width: 25vw
+    height: 25vw
+    border-radius: 25px
+    +animation(fade, 2s, linear, infinite)
+
