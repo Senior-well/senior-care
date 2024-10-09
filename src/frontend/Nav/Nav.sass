@@ -12,37 +12,56 @@ $borderColor: #605db0
     border-top: $borderSize solid $borderColor
     border-bottom: $borderSize solid $borderColor
     background: $backGroundColor
+    justify-content: center
 
-.Nav div
-    display: block
-    width: 100vw
-
-.Nav div .user
+.Nav div .user,
+.Nav div .user .user-left,
+.Nav div .user .user-right  
     display: flex
     flex-wrap: wrap
     justify-content: center
+    align-content: center
     border-bottom: $borderSize solid $borderColor
 
-.Nav div .menu
+.Nav div .user .user-left, 
+.Nav div .user .user-right
+    border-bottom: none
+
+.Nav div .user .user-left
+    display: flex
+    align-items: center
+
+.Nav div .user .user-right li button
+    background: inherit
+    color: inherit
+    border: inherit
+    font-size: inherit
+
+.Nav div .menu,
+.Nav div .menu .menu-left,
+.Nav div .menu .menu-right
     display: flex
     flex-wrap: wrap
     margin: 20px 0
     align-content: center
 
-.Nav div .menu .menuData
+.Nav div .menu .menu-left .menuData
     display: flex
     align-items: center
 
-.Nav div .menu .menuData button
+.Nav div .menu .menu-left .menuData button
     color: inherit
     font-size: 20px
     background-color: transparent
     border: none
 
-.Nav div .menu #magnify
+.Nav div .menu .menu-right #magnify
     display: flex
+    border: 1px solid white
+    padding: 10px 200px 10px 10px
+    border-radius: 20px
 
-:is(.Nav div .menu #demo,.Nav div .menu #started) button
+:is(.Nav div .menu .menu-right #demo,.Nav div .menu .menu-right #started) button
     padding: 15px
     color: inherit
     font-size: inherit
@@ -57,32 +76,27 @@ $borderColor: #605db0
     border-radius: 20px
     width: 150px
 
-.Nav div .menu #started button
-    background: $backgroundButton
+.Nav div .menu .menu-right #started button
+    background: $backgroundButton    
 
-.Nav div .menu li .searchBar
-    border: 1px solid white
-    padding: 10px 200px 10px 20px
-    border-radius: 20px
-
-.Nav div .user li,
-.Nav div .menu li
+.Nav div .user ul li,
+.Nav div .menu ul li
     display: inline
     list-style: none
     margin: 0 20px
     letter-spacing: 1px
 
-.Nav div .user li a,
-.Nav div .menu li a
+.Nav div .user ul li a,
+.Nav div .menu ul li a
     color: white
     text-decoration: none
     margin: 0 10px
     transition: 0.5s linear
 
-.Nav div .user li a
+.Nav div .user ul li a
     font-size: $fontSize - 5px
 
-.Nav div .menu li a
+.Nav div .menu ul li a
     font-size: $fontSize
 
 .dropdown
@@ -93,4 +107,3 @@ $borderColor: #605db0
 .dropdown.show
     display: block
     opacity: 1
-

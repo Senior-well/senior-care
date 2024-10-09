@@ -17,12 +17,13 @@ const MenuItems = ({ items }) => {
         <li onMouseEnter={mouseEnterDropdown} onMouseLeave={mouseLeaveDropdown} className="menuData">
             {items.submenus ? (
                 <>
+                {items.icon && <FontAwesomeIcon icon={items.icon} />}
                     <button
                         type="button"
                         aria-haspopup="menu"
                         aria-expanded={dropdown ? "true" : "false"}
                     >
-                        {items.icon && <FontAwesomeIcon icon={items.icon} />}
+                        
                         {items.title}{' '}
                     </button>
                     <Dropdown
