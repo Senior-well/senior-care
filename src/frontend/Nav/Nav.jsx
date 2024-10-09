@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 export default function Nav() {
-    const [position, setPosition] = useState(-100); 
+    const [position, setPosition] = useState(-100);
 
     useEffect(() => {
         const intervalId = setInterval(() => {
@@ -33,33 +33,44 @@ export default function Nav() {
     return (
         <nav className="Nav">
             <div>
-                <ul className="user">
-                    <li>
-                        <span style={{ fontStyle: 'italic' }}>Senior<br></br>Well Inc.</span>
-                    </li>
-                    <li className="newsBox" style={newsBoxStyle}>
-                        <p className="newsArticle" style={newsArticleStyle}>
-                            Test version 1.0.1
-                        </p>
-                    </li>
-                    {userData.map((user, index) => {
-                        return <MenuItems items={user} key={index} />
-                    })}
-                </ul>
-                <ul className="menu">
-                    {menuData.map((menu, index) => {
-                        return <MenuItems items={menu} key={index} />
-                    })}
-                    <li id="magnify">
-                        <a href='#magnifying' className="searchBar"><FontAwesomeIcon icon={faMagnifyingGlass} /></a>
-                    </li>
-                    <li id="demo">
-                        <button>Request Demo</button>
-                    </li>
-                    <li id="started">    
-                        <button>Get Started</button>
-                    </li>
-                </ul>
+                {/* First nav bar */}
+                <div className="user">
+                    <ul className="user-left">
+                        <li>
+                            <span style={{ fontStyle: 'italic' }}>Senior<br></br>Well Inc.</span>
+                        </li>
+                        <li className="newsBox" style={newsBoxStyle}>
+                            <p className="newsArticle" style={newsArticleStyle}>
+                                Test version 1.0.1
+                            </p>
+                        </li>
+                    </ul>
+                    <ul className="user-right">
+                        {userData.map((user, index) => {
+                            return <MenuItems items={user} key={index} />
+                        })}
+                    </ul>
+                </div>
+                
+                {/* Second nav bar */}
+                <div className="menu">
+                    <ul className="menu-left">
+                        {menuData.map((menu, index) => {
+                            return <MenuItems items={menu} key={index} />
+                        })}
+                    </ul>
+                    <ul className="menu-right">
+                        <li id="magnify">
+                            <a href='#magnifying' className="searchBar"><FontAwesomeIcon icon={faMagnifyingGlass} /></a>
+                        </li>
+                        <li id="demo">
+                            <button>Book a demo</button>
+                        </li>
+                        <li id="started">
+                            <button>Start Free Trial</button>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
         </nav>
