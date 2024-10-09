@@ -18,8 +18,8 @@ export const userData = [
         icon: faUser,
         submenus: [
             {
-                title: "Login",
-                url: "/user/login",
+                title: "Sign in",
+                url: "/user/sign-in",
             },
             {
                 title: "Sign up",
