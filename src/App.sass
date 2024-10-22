@@ -1,6 +1,14 @@
 $fontFamily: arial
+$backgroundColor: #0E0D2B
 
 .App
   font-family: $fontFamily
   color: white
   scroll-behavior: smooth
+  background: $backgroundColor
+  display: flex
+  flex-direction: column
+  min-height: 100vh // Ensure the app takes at least the full height of the viewport
+
+.Main-content
+  flex: 1 // Allow the main content to grow and take available space

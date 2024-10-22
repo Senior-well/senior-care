@@ -48,10 +48,10 @@ const Footer = () => {
         <div className="footer-section follow-us">
           <h4>Follow us</h4>
           <div className="social-icons">
-            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/company/senior-well" target="_blank" rel="noopener noreferrer">
               <i className="fab fa-linkedin"></i>
             </a>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/Senior-well" target="_blank" rel="noopener noreferrer">
               <i className="fab fa-github"></i>
             </a>
             <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
