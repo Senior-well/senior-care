@@ -1,22 +1,12 @@
-// styles.sass
-.App
-  display: flex
-  flex-direction: column
-  min-height: 100vh // Ensure the app takes at least the full height of the viewport
-
-.Main-content
-  flex: 1 // Allow the main content to grow and take available space
-
 .footer
-  background-color: #000
   color: #fff
   padding: 20px
-  text-align: center
+  // text-align: center
   font-family: 'Arial', sans-serif
+  border-top: 1px solid #333
 
   .footer-content
     display: flex
-    justify-content: space-between
     flex-wrap: wrap
     margin-bottom: 20px
 
@@ -51,18 +41,19 @@
     .follow-us
       .social-icons
         display: flex
-        justify-content: center
+        // justify-content: center
 
         a
           color: #fff
-          margin: 0 10px
+          margin-right: 10px
           font-size: 1.5rem
 
           &:hover
             color: #007bff
 
   .footer-bottom
-    border-top: 1px solid #333
+    display: flex
+    justify-content: center
     padding-top: 10px
 
     p

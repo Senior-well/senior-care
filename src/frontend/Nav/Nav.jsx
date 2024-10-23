@@ -3,8 +3,6 @@ import './Nav.sass';
 import { menuData } from "../../backend/MenuData/menuData";
 import MenuItems from "../Components/MenuItems/MenuItems";
 import { userData } from "../../backend/UserData/userData";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 export default function Nav() {
     const [position, setPosition] = useState(-100);
@@ -60,9 +58,6 @@ export default function Nav() {
                         })}
                     </ul>
                     <ul className="menu-right">
-                        <li id="magnify">
-                            <a href='#magnifying' className="searchBar"><FontAwesomeIcon icon={faMagnifyingGlass} /></a>
-                        </li>
                         <li id="demo">
                             <button>Book a demo</button>
                         </li>
@@ -72,7 +67,6 @@ export default function Nav() {
                     </ul>
                 </div>
             </div>
-
         </nav>
     );
 }
