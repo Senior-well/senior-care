@@ -7,12 +7,14 @@ $backgroundButton: linear-gradient(to right,#1B1A55, purple)
 $borderColor: #605db0
 
 .Nav
-    display: $displayFlex
-    flex-wrap: $flexWrap
+    position: sticky
+    top: 0
+    width: 100vw
     border-top: $borderSize solid $borderColor
     border-bottom: $borderSize solid $borderColor
     background: $backGroundColor
     justify-content: center
+    z-index: 2
 
 .Nav div .user,
 .Nav div .user .user-left,
@@ -57,14 +59,8 @@ $borderColor: #605db0
     border: none
     transition: 0.5s
 
-.Nav div .menu .menu-left .menuData button:hover
-    color: blue
-
-.Nav div .menu .menu-right #magnify
-    display: flex
-    border: 1px solid white
-    padding: 10px 200px 10px 10px
-    border-radius: 20px
+    &:hover
+        color: blue
 
 :is(.Nav div .menu .menu-right #demo,.Nav div .menu .menu-right #started) button
     padding: 15px
@@ -92,12 +88,11 @@ $borderColor: #605db0
     margin: 0 20px
     letter-spacing: 1px
 
-.Nav div .user ul li a,
-.Nav div .menu ul li a
-    color: white
-    text-decoration: none
-    margin: 0 10px
-    transition: 0.5s
+    & a
+        color: white
+        text-decoration: none
+        margin: 0 10px
+        transition: 0.5s
 
 .Nav div .user ul li a
     font-size: $fontSize - 5px

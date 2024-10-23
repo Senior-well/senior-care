@@ -6,7 +6,9 @@ $backgroundColor: linear-gradient(#1B1A55, purple)
 .homePage
     display: $displayFlex
     flex-wrap: $flexWrap
-    height: 600px
+    justify-content: $displayCenter
+    align-items: $displayCenter
+    height: 100vh
     background: $backgroundColor
 
 .homePage .headerHP
@@ -14,18 +16,20 @@ $backgroundColor: linear-gradient(#1B1A55, purple)
     flex-wrap: $flexWrap
     justify-content: $displayCenter
     align-items: $displayCenter
+    align-content: center
     margin: 20px 30px
     width: 30vw
 
-.homePage .headerHP div h1,
-.homePage .headerHP div p
-    width: 20vw
+.homePage .headerHP h1,
+.homePage .headerHP p
+    display: flex
+    text-align: center
     word-spacing: 3px
 
 .homePage .headerHP h1
     font-size: 30px
 
-.homePage .headerHP div p
+.homePage .headerHP p
     font-size: 16px
 
 .homePage .headerHP button
@@ -34,11 +38,12 @@ $backgroundColor: linear-gradient(#1B1A55, purple)
     padding: 10px
     border-radius: 20px
     margin-right: 20px
-    width: 10vw 
+    width: 220px 
     height: 40px
     justify-content: $displayCenter
     align-items: $displayCenter
     font-weight: bold
+    z-index: 1
 
 .homePage .headerHP button:nth-child(even)
     border: 0px
@@ -55,34 +60,3 @@ $backgroundColor: linear-gradient(#1B1A55, purple)
 .homePage .headerHP button:nth-child(even):hover,
 .homePage .headerHP button:nth-child(odd):hover
     transform: scale(1.1)
-
-.homePage .imgHP
-    display: $displayFlex
-    flex-wrap: $flexWrap
-    justify-content: center
-    align-items: center 
-    margin-left: 25vw
-    width: 25vw
-
-=animation($animation, $duration, $method, $times)
-    animation: $animation $duration $method $times
-
-=keyframes($name)
-    @keyframes #{$name}
-        @content
-        
-+keyframes(fade)
-        0%
-            opacity: 1
-        50% 
-            opacity: 0.5
-        100%
-            opacity: 1        
-
-.homePage .imgHP img
-    width: 1000px
-    height: 600px
-    border-radius: 25px
-    -webkit-mask-image: linear-gradient(to left,transparent, black, transparent)
-    // +animation(fade, 2s, linear, infinite)
-
