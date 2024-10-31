@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Dropdown from "../DropDownNav/DropDown";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const MenuItems = ({ items }) => {
+const MenuItems = ({ items, onSignInClick }) => {
     const [dropdown, setDropdown] = useState(false);
 
     const submenusDropdownEnter = () => {
@@ -31,7 +31,16 @@ const MenuItems = ({ items }) => {
                     />
                 </>
             ) : (
-                <a href={items.url}>{items.icon && <FontAwesomeIcon icon={items.icon} />}{items.title}</a>
+                <a
+                    href={items.url}
+                    onClick={(e) => {
+                        e.preventDefault();
+                        onSignInClick();
+                    }}
+                >
+                    {items.icon && <FontAwesomeIcon icon={items.icon} />}
+                    {items.title}
+                </a>
             )
             }
         </li>

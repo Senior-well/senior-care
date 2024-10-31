@@ -3,9 +3,11 @@ import './Nav.sass';
 import { menuData } from "../../backend/MenuData/menuData";
 import MenuItems from "../Components/MenuItems/MenuItems";
 import { userData } from "../../backend/UserData/userData";
+import { useNavigate } from "react-router-dom";
 
 export default function Nav() {
     const [position, setPosition] = useState(-100);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const intervalId = setInterval(() => {
@@ -45,11 +47,15 @@ export default function Nav() {
                     </ul>
                     <ul className="user-right">
                         {userData.map((user, index) => {
-                            return <MenuItems items={user} key={index} />
+                            return <MenuItems
+                                items={user}
+                                key={index}
+                                onSignInClick={user.title === 'Sign in' ? () => navigate('/sign-in') : null}
+                            />
                         })}
                     </ul>
                 </div>
-                
+
                 {/* Second nav bar */}
                 <div className="menu">
                     <ul className="menu-left">
