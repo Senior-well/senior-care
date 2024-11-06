@@ -4,6 +4,8 @@ import { menuData } from "../../backend/MenuData/menuData";
 import MenuItems from "../Components/MenuItems/MenuItems";
 import { userData } from "../../backend/UserData/userData";
 import { useNavigate } from "react-router-dom";
+import { logoTrans } from "../../images/Images";
+import { Button } from '@mui/material';
 
 export default function Nav() {
     const [position, setPosition] = useState(-100);
@@ -37,6 +39,9 @@ export default function Nav() {
                 <div className="user">
                     <ul className="user-left">
                         <li>
+                            <img src={logoTrans} style={{ width: '30px' }} alt='LogoImage'></img>
+                        </li>
+                        <li>
                             <span style={{ fontStyle: 'italic' }}>Senior<br></br>Well Inc.</span>
                         </li>
                         <li className="newsBox" style={newsBoxStyle}>
@@ -53,9 +58,9 @@ export default function Nav() {
                                 onSignInClick={user.title === 'Sign in' ? () => navigate('/sign-in') : null}
                             />
                         })}
+                        <Button variant='outlined'>Hello </Button>
                     </ul>
                 </div>
-
                 {/* Second nav bar */}
                 <div className="menu">
                     <ul className="menu-left">

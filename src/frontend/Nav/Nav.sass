@@ -15,53 +15,95 @@ $borderColor: #605db0
     justify-content: center
     z-index: 2
 
-.Nav div .user,
-.Nav div .user .user-left,
-.Nav div .user .user-right
-    display: flex
-    flex-wrap: wrap
-    justify-content: center
-    align-content: center
-    border-bottom: $borderSize solid $borderColor
+    div
+        // Users section - top nav
+        .user,
+        .user-left,
+        .user-right
+            display: flex
+            flex-wrap: wrap
+            justify-content: center
+            align-content: center
+            align-items: center
+            border-bottom: $borderSize solid $borderColor
 
-.Nav div .user .user-left,
-.Nav div .user .user-right
-    border-bottom: none
+        .user-left,
+        .user-right
+            border-bottom: none
 
-.Nav div .user .user-left
-    display: flex
-    align-items: center
+        .user-left
+            display: flex
+            align-items: center
 
-.Nav div .user .user-right li button
-    background: inherit
-    color: inherit
-    border: inherit
-    font-size: inherit
+        .user-right li button
+            background: inherit
+            color: inherit
+            border: inherit
+            font-size: inherit
 
+        // Menu sections - second nav
+        .menu,
+        .menu-left,
+        .menu-right
+            display: flex
+            flex-wrap: wrap
+            margin: 20px 0
+            align-content: center
 
-.Nav div .menu,
-.Nav div .menu .menu-left,
-.Nav div .menu .menu-right
-    display: flex
-    flex-wrap: wrap
-    margin: 20px 0
-    align-content: center
+        .menu-left .menuData
+            display: flex
+            align-items: center
 
-.Nav div .menu .menu-left .menuData
-    display: flex
-    align-items: center
+            button
+                color: inherit
+                font-size: 20px
+                background-color: transparent
+                border: none
+                transition: 0.5s
 
-.Nav div .menu .menu-left .menuData button
-    color: inherit
-    font-size: 20px
-    background-color: transparent
-    border: none
-    transition: 0.5s
+            &:hover
+                color: blue
 
-    &:hover
-        color: blue
+            .menu-right #started button
+                background: $backgroundButton
 
-:is(.Nav div .menu .menu-right #demo,.Nav div .menu .menu-right #started) button
+        .user ul li,
+        .menu ul li
+            position: relative
+            display: inline
+            list-style: none
+            margin: 0 20px
+            letter-spacing: 1px
+
+        & a
+            color: white
+            text-decoration: none
+            margin: 0 10px
+            transition: 0.5s
+
+        .user ul li a
+            font-size: $fontSize - 5px
+
+        .menu ul li a
+            font-size: $fontSize
+
+            &:hover
+                color: blue
+
+        .menu-left li ul li
+            margin: 20px 0
+
+            a
+                width: 200px
+                padding: 15px
+
+                &:hover
+                    color: red
+                    background: white
+                    border-radius: 20px
+                    text-decoration: underline
+
+:is(.menu-right #demo,.menu-right #started) button
     padding: 15px
     color: inherit
     font-size: inherit
@@ -76,32 +118,6 @@ $borderColor: #605db0
     border-radius: 20px
     width: 150px
 
-.Nav div .menu .menu-right #started button
-    background: $backgroundButton
-
-.Nav div .user ul li,
-.Nav div .menu ul li
-    position: relative
-    display: inline
-    list-style: none
-    margin: 0 20px
-    letter-spacing: 1px
-
-    & a
-        color: white
-        text-decoration: none
-        margin: 0 10px
-        transition: 0.5s
-
-.Nav div .user ul li a
-    font-size: $fontSize - 5px
-
-.Nav div .menu ul li a
-    font-size: $fontSize
-
-.Nav div .menu ul li a:hover
-    color: blue
-
 .dropdown
     position: absolute
     top: 100%
@@ -111,19 +127,6 @@ $borderColor: #605db0
     display: none
     padding: 0
     z-index: 999
-
-.Nav div .menu .menu-left li ul li
-    margin: 20px 0 
-
-.Nav div .menu .menu-left li ul li a
-    width: 200px
-    padding: 15px
-
-.Nav div .menu .menu-left li ul li a:hover
-    color: red
-    background: white
-    border-radius: 20px
-    text-decoration: underline
 
 .dropdown.show
     display: block
