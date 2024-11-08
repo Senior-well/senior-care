@@ -102,6 +102,9 @@ serve -s build
 ```php
 php -v /*For checking the version if it availables*/
 ```
+```php
+cd senior-care/src/backend/database /*Redirect to database folder*/
+```
 ```bash
 php -S localhost:8010
 ```
