@@ -85,6 +85,35 @@ npm run build
 serve -s build
 ```
 
+<br>
+
+<h1 align="center">How to run php application?</h1>
+
+### Installation:
+
+<a href='https://www.php.net/downloads.php'>https://www.php.net/downloads.php</a>
+
+### Set `Path` in `Edit environment variables for your account` on computer:
+<p align='center'>
+    <img src='./src/images/README/path.png'>
+</p>
+
+### Open cmd or git bash and do:
+```php
+php -v /*For checking the version if it availables*/
+```
+```bash
+php -S localhost:8010
+```
+
+### Require to run to application at the same time which are:
+
+```bash
+`npm run dev` and `php -S localhost:8010`
+```
+
+### to connect between front-end and back-end server
+
 <h3 align="center"> Good luck! 😎 </h3>
 
 # Noted:
