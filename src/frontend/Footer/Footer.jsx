@@ -1,12 +1,13 @@
 import React from "react";
 import './Footer.sass';
+import { logoTrans } from '../../images/Images'
 
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-content">
         <div className="footer-section logo">
-          <img src="../images/logo.png" alt="Senior Well Logo" />
+          <img src={logoTrans} alt="Senior Well Logo" />
         </div>
 
         <div className="footer-section">

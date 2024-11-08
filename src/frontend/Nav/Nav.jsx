@@ -5,10 +5,13 @@ import MenuItems from "../Components/MenuItems/MenuItems";
 import { userData } from "../../backend/UserData/userData";
 import { useNavigate } from "react-router-dom";
 import { logoTrans } from "../../images/Images";
-import { Button } from '@mui/material';
+import { Button, Menu, MenuItem } from '@mui/material';
 
 export default function Nav() {
     const [position, setPosition] = useState(-100);
+    const [firstName, setFirstName] = useState('');
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [anchorEl, setAnchorEl] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -16,8 +19,56 @@ export default function Nav() {
             setPosition((prevPosition) => (prevPosition >= 100 ? -100 : prevPosition + 1));
         }, 15);
 
+        fetch('http://localhost:8010/data.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ status: 'getUser' }),
+            credentials: 'include',
+        })
+            .then(response => {
+
+                return response.json()
+            })
+            .then(data => {
+                console.log('Response: ', data);
+                if (data.status === 'success') {
+                    setFirstName(data.firstName);
+                    setIsLoggedIn(true);
+                }
+                else {
+                    setIsLoggedIn(false);
+                }
+            })
+            .catch(error => console.log('Error checking log in status: ', error));
+
         return () => clearInterval(intervalId);
     }, []);
+
+    const handleSignOut = () => {
+        fetch('http://localhost:8010/data.php', {
+            method: 'POST',
+            headers: { 'Content-type': 'application/json' },
+            body: JSON.stringify({ status: 'logout' }),
+            credentials: 'include',
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    setFirstName('');
+                    setIsLoggedIn(false);
+                    navigate('/');
+                }
+            })
+            .catch(error => console.log('Error during logout: ', error));
+    }
+
+    const handleLogOutClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    }
+
+    const handleLogOutClose = () => {
+        setAnchorEl(null);
+    }
 
     const newsBoxStyle = {
         width: '200px',
@@ -51,14 +102,30 @@ export default function Nav() {
                         </li>
                     </ul>
                     <ul className="user-right">
-                        {userData.map((user, index) => {
-                            return <MenuItems
-                                items={user}
-                                key={index}
-                                onSignInClick={user.title === 'Sign in' ? () => navigate('/sign-in') : null}
-                            />
-                        })}
-                        <Button variant='outlined'>Hello </Button>
+                        {isLoggedIn ?
+                            <>
+                                <Button variant='outlined' onClick={handleLogOutClick}>Hello {firstName}</Button>
+                                <Menu
+                                    anchorEl={anchorEl}
+                                    open={Boolean(anchorEl)}
+                                    onClose={handleLogOutClose}
+                                >
+                                    <MenuItem onClick={handleSignOut}>Sign out</MenuItem>
+                                </Menu>
+                            </>
+                            :
+                            <>
+                                {
+                                    userData.map((user, index) => {
+                                        return <MenuItems
+                                            items={user}
+                                            key={index}
+                                            onSignInClick={user.title === 'Sign in' ? () => navigate('/sign-in') : null}
+                                        />
+                                    })
+                                }
+                            </>
+                        }
                     </ul>
                 </div>
                 {/* Second nav bar */}

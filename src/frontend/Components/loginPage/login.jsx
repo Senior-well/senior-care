@@ -12,16 +12,20 @@ import { useNavigate } from 'react-router-dom';
  * @param {*} placeholder: Placeholder from the formQuery
  * style of input file: outlined - mandatory
  */
-const FormUserInformation = ({ requestInformation, placeholder }) => {
+const FormUserInformation = ({ requestInformation, placeholder, value, onChange, name }) => {
     return (
         <>
             <FormControl sx={{ m: 1, width: '350px' }} variant={'outlined'}>
-                <InputLabel htmlFor={'outlined-adorment-user'} sx={{ color: 'white' }}>{requestInformation}</InputLabel>
+                <InputLabel htmlFor={'outlined-adorment-user'} sx={{ color: 'white' }} required>{requestInformation}</InputLabel>
                 <OutlinedInput
                     id={'outlined-adorment-user'}
                     label={requestInformation}
                     sx={{ color: 'white' }}
                     placeholder={placeholder}
+                    value={value}
+                    onChange={onChange}
+                    name={name}
+                    required
                 >
                 </OutlinedInput>
             </FormControl>
@@ -35,7 +39,7 @@ const FormUserInformation = ({ requestInformation, placeholder }) => {
  * @param {*} placeholder 
  * styles of input file: outlined - mandatory
  */
-const FormPassword = ({ requestInformation, placeholder }) => {
+const FormPassword = ({ requestInformation, placeholder, value, onChange, name }) => {
     const [showPassword, setShowPassword] = useState(false);
     const handleShowPassword = () => setShowPassword((prev) => !prev);
     const handleMouseDownPassword = (event) => { event.preventDefault(); };
@@ -44,7 +48,7 @@ const FormPassword = ({ requestInformation, placeholder }) => {
     return (
         <>
             <FormControl sx={{ m: 1, width: '350px' }} variant={'outlined'}>
-                <InputLabel htmlFor={'outlined-adornment-password'} sx={{ color: 'white' }}>{requestInformation}</InputLabel>
+                <InputLabel htmlFor={'outlined-adornment-password'} sx={{ color: 'white' }} required>{requestInformation}</InputLabel>
                 <OutlinedInput
                     id={'outlined-adornment-password'}
                     type={showPassword ? 'text' : 'password'}
@@ -66,6 +70,10 @@ const FormPassword = ({ requestInformation, placeholder }) => {
                     label={requestInformation}
                     sx={{ color: 'white' }}
                     placeholder={placeholder}
+                    value={value}
+                    onChange={onChange}
+                    name={name}
+                    required
                 >
                 </OutlinedInput>
             </FormControl>
@@ -76,12 +84,78 @@ const FormPassword = ({ requestInformation, placeholder }) => {
 export default function Login() {
     const [alignment, setAlignment] = useState('login');
     const navigate = useNavigate();
+    const [formData, setFormData] = useState({
+        'First name': '',
+        'Family name': '',
+        'Email': '',
+        'Email address or mobile-phone number': '',
+        'Phone number': '',
+        'Password': '',
+        'Confirm password': ''
+    })
+
     const handleChangeButton = (event, newAllignment) => {
         if (newAllignment !== 'cancel') {
             setAlignment(newAllignment);
+            setFormData({
+                'First name': '',
+                'Family name': '',
+                'Email': '',
+                'Email address or mobile-phone number': '',
+                'Phone number': '',
+                'Password': '',
+                'Confirm password': ''
+            });
         }
         else {
             navigate('/');
+        }
+    }
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+    }
+
+    /**
+     * 
+     * @param {*} e
+     * async: promise-based code
+     * await: pause its execution and wait for a promise to resolve before move on
+     */
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (alignment === 'signin' && formData['Password'] !== formData['Confirm password']) {
+            alert('Password does not match');
+            return;
+        }
+
+        const payload = { ...formData, status: alignment };
+
+        try {
+            const response = await fetch('http://localhost:8010/data.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+
+            if (!response.ok) {
+                throw new Error(`Server error: ${response.status}`);
+            }
+
+            const result = await response.json();
+            console.log(result);
+            if (result.status === 'success') {
+                alert(result.message);
+                navigate('/');
+            } else {
+                alert(result.message);
+            }
+        } catch (error) {
+            console.error('Fetch error:', error);
+            alert(`An error occurred: ${error.message}`);
         }
     }
 
@@ -149,12 +223,18 @@ export default function Login() {
                     key={index}
                     requestInformation={field.label}
                     placeholder={field.placeholder}
+                    value={formData[field.label]}
+                    onChange={handleInputChange}
+                    name={field.label}
                 />
             ) : (
                 <FormPassword
                     key={index}
                     requestInformation={field.label}
                     placeholder={field.placeholder}
+                    value={formData[field.label]}
+                    onChange={handleInputChange}
+                    name={field.label}
                 />
             )
         )
@@ -182,9 +262,9 @@ export default function Login() {
             <div className='login-page'>
                 <div className='content'>
                     <h2>{alignment === 'login' ? 'Login' : 'Sign up'}</h2>
-                    <form>{renderOptions(alignment)}</form>
+                    <form onSubmit={handleSubmit}>{renderOptions(alignment)}</form>
                     <div className='button'>
-                        <Button variant="outlined" size='large'>{alignment === 'login' ? 'Login' : 'Sign up'}</Button>
+                        <Button variant="outlined" size='large' onClick={handleSubmit}>{alignment === 'login' ? 'Login' : 'Sign up'}</Button>
                     </div>
                 </div>
             </div>

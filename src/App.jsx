@@ -24,10 +24,8 @@ export default function App() {
               </>
             }
           />
-        </Routes>
 
-        {/* Routes for login */}
-        <Routes>
+          {/* Routes for login */}
           <Route
             path='/sign-in'
             element={
