@@ -5,41 +5,44 @@ import Nav from './frontend/Nav/Nav';
 import HomePage from './frontend/HomePage/homePage';
 import Footer from './frontend/Footer/Footer';
 import Login from './frontend/Components/loginPage/login';
+import { UserProvider } from './frontend/Components/Context/UserContent';
 
 export default function App() {
   return (
-    <Router>
-      <div className='App'>
-        {/* Routes for main content */}
-        <Routes>
-          <Route
-            path='/'
-            element={
-              <>
-                <div className='Main-content'>
-                  <Nav />
-                  <HomePage />
-                </div>
-                <Footer />
-              </>
-            }
-          />
+    <UserProvider>
+      <Router>
+        <div className='App'>
+          {/* Routes for main content */}
+          <Routes>
+            <Route
+              path='/'
+              element={
+                <>
+                  <div className='Main-content'>
+                    <Nav />
+                    <HomePage />
+                  </div>
+                  <Footer />
+                </>
+              }
+            />
 
-          {/* Routes for login */}
-          <Route
-            path='/sign-in'
-            element={
-              <>
-                <div className='Login-page'>
-                  <Login />
-                </div>
-                <Footer />
-              </>
-            }
-          />
-        </Routes>
-      </div>
-    </Router>
+            {/* Routes for login */}
+            <Route
+              path='/sign-in'
+              element={
+                <>
+                  <div className='Login-page'>
+                    <Login />
+                  </div>
+                  <Footer />
+                </>
+              }
+            />
+          </Routes>
+        </div>
+      </Router>
+    </UserProvider>
   );
 
 }

@@ -1,10 +1,11 @@
-import { React, useState } from 'react';
+import { React, useContext, useState } from 'react';
 import './login.sass';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { Button, FormControl, InputLabel, OutlinedInput, InputAdornment, IconButton } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../Context/UserContent';
 
 /**
  * 
@@ -82,6 +83,7 @@ const FormPassword = ({ requestInformation, placeholder, value, onChange, name }
 }
 
 export default function Login() {
+    const { setFirstName, setIsLoggedIn } = useContext(UserContext);
     const [alignment, setAlignment] = useState('login');
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
@@ -148,6 +150,10 @@ export default function Login() {
             const result = await response.json();
             console.log(result);
             if (result.status === 'success') {
+                if (alignment === 'login') {
+                    setFirstName(result.firstName);
+                    setIsLoggedIn(true);
+                }
                 alert(result.message);
                 navigate('/');
             } else {

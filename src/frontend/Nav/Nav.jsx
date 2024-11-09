@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import './Nav.sass';
 import { menuData } from "../../backend/MenuData/menuData";
 import MenuItems from "../Components/MenuItems/MenuItems";
@@ -6,40 +6,18 @@ import { userData } from "../../backend/UserData/userData";
 import { useNavigate } from "react-router-dom";
 import { logoTrans } from "../../images/Images";
 import { Button, Menu, MenuItem } from '@mui/material';
+import { UserContext } from "../Components/Context/UserContent";
 
 export default function Nav() {
     const [position, setPosition] = useState(-100);
-    const [firstName, setFirstName] = useState('');
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
+    const { firstName, setFirstName, isLoggedIn, setIsLoggedIn } = useContext(UserContext);
     const navigate = useNavigate();
 
     useEffect(() => {
         const intervalId = setInterval(() => {
             setPosition((prevPosition) => (prevPosition >= 100 ? -100 : prevPosition + 1));
         }, 15);
-
-        fetch('http://localhost:8010/data.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ status: 'getUser' }),
-            credentials: 'include',
-        })
-            .then(response => {
-
-                return response.json()
-            })
-            .then(data => {
-                console.log('Response: ', data);
-                if (data.status === 'success') {
-                    setFirstName(data.firstName);
-                    setIsLoggedIn(true);
-                }
-                else {
-                    setIsLoggedIn(false);
-                }
-            })
-            .catch(error => console.log('Error checking log in status: ', error));
 
         return () => clearInterval(intervalId);
     }, []);

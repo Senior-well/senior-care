@@ -86,21 +86,15 @@ if ($formData && isset($formData['status'])) {
                     'email' => $user['Email']
                 ];
                 error_log("Session set for user: " . json_encode($_SESSION['user']));
-                echo json_encode(['status' => 'success', 'message' => 'Login successful.']);
+                echo json_encode([
+                    'status' => 'success', 
+                    'message' => 'Login successful.',
+                    'firstName' => $_SESSION['user']['firstName']
+                ]);
                 exit();
             }
         }
         echo json_encode(['status' => 'error', 'message' => 'Account doesn\'t exist or incorrect password']);
-    }
-
-    // getUser information status
-    elseif ($status == 'getUser') {
-        /*Verify user login */
-        if (isset($_SESSION['user'])) {
-            echo json_encode(['status' => 'success', 'firstName' => $_SESSION['user']['firstName']]);
-        } else {
-            echo json_encode(['status' => 'error', 'message' => 'User not logged in']);
-        }
     }
 
     // Logout status
