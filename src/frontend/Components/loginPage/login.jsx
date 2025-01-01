@@ -49,9 +49,9 @@ const FormPassword = ({ requestInformation, placeholder, value, onChange, name }
     return (
         <>
             <FormControl sx={{ m: 1, width: '350px' }} variant={'outlined'}>
-                <InputLabel htmlFor={'outlined-adornment-password'} sx={{ color: 'white' }} required>{requestInformation}</InputLabel>
+                <InputLabel htmlFor={'outlined-adorment-password'} sx={{ color: 'white' }} required>{requestInformation}</InputLabel>
                 <OutlinedInput
-                    id={'outlined-adornment-password'}
+                    id={'outlined-adorment-password'}
                     type={showPassword ? 'text' : 'password'}
                     endAdornment={
                         <InputAdornment position="end">

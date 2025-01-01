@@ -1,52 +1,49 @@
 export const menuData = [
     {
-        title: 'Industries',
-        url: '/industries',
-    },
-    {
-        title: 'Resources',
-        url: '/Resources',
-    },
-    {
         title: 'Features',
         submenus: [
             {
-                title: 'Medication & Health Monitoring',
-                url: '/features/medication-and-health-monitoring',
+                title: 'Dashboard',
+                description: 'Patient Information',
+                url: '/dashboard'
             },
             {
-                title: 'Caregiver Coordination',
-                url: '/features/caregiver-coordination',
+                title: 'Tracker',
+                description: 'Record Update Immediately',
+                url: '/tracker'
             },
             {
-                title: 'Emergency Alerts',
-                url: '/features/emergency-alerts',
+                title: 'Automated alerts',
+                description: 'Request Emergency Arrival',
+                url: '/alerts'
             },
-            {
-                title: 'Mental & Physical Exercises',
-                url: '/features/mental-physical-exercises',
-            }
         ],
     },
     {
-        title: 'Products',
-        submenus: [
-            {
-                title: 'Overview',
-                url: '/products/overview',
-            },
-            {
-                title: 'Software',
-                url: '/products/software',
-            },
-            {
-                title: 'Pricing and Plans',
-                url: '/products/pricing-and-plans',
-            },
-        ]
+        title: 'Developers',
+        url: '/dev'
     },
     {
-        title: 'Contact',
-        url: '/contact',
+        title: 'Company',
+        submenus: [
+            {
+                title: 'About',
+                description: 'Our contribution',
+                url: '/about'
+            },
+            {
+                title: 'Contact',
+                description: 'Get in touch',
+                url: '/contact'
+            },
+        ],
     },
+    {
+        title: 'Blogs',
+        url: '/blogs'
+    },
+    {
+        title: 'Pricing',
+        url: '/pricing'
+    }
 ];

@@ -1,0 +1,64 @@
+$displayFlex: flex
+$flexWrap: wrap
+$backgroundColor: linear-gradient(to bottom, #22174b,#0E0D2B)
+
+.patientInfor
+    display: $displayFlex
+    flex-wrap: $flexWrap
+    justify-content: center
+    margin: 30px 0
+
+    .patientInfor-page
+        display: $displayFlex
+        flex-wrap: $flexWrap
+        width: 100vw
+        height: 600px
+        background: $backgroundColor
+        border-top: 1px solid white
+        border-bottom: 1px solid white
+        padding: 50px 0
+
+        // Patient information displayed on the left
+        .patientStatistics
+            display: $displayFlex
+            flex-direction: column
+            align-items: center
+            width: 550px
+            border-right: 1px solid white
+
+        // Dashboard displayed on the right
+        .patientDashboard
+            flex: 1
+            display: $displayFlex
+            flex-direction: column
+            align-items: center
+
+            #displayDIV
+                flex: 1
+                width: 800px
+
+                #innerDIV
+                    display: flex
+
+                    div
+                        text-align: center
+                        flex: 1
+                        border: 1px solid white
+                        border-radius: 20px
+                        margin-bottom: 50px
+
+                #warning
+                    background: red
+                    animation: scale 0.5s infinite ease
+
+                @keyframes scale
+                    0%
+                        transform: scale(1)
+                    50%
+                        transform: scale(1.05)
+                    100%
+                        transform: scale(1)
+
+                #button
+                    display: $displayFlex
+                    justify-content: center
