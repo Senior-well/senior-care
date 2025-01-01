@@ -1,133 +1,89 @@
-$displayFlex: flex
+$flexDisplay: flex
 $flexWrap: wrap
-$fontSize: 20px
-$borderSize: 0.1vh
-$backGroundColor: #0e0d2b
-$backgroundButton: linear-gradient(to right,#1B1A55, purple)
-$borderColor: #605db0
+$darkWhite: #ffffff2e
+$darkPurple: rgb(85, 26, 139)
 
 .Nav
-    position: sticky
-    top: 0
-    border-top: $borderSize solid $borderColor
-    border-bottom: $borderSize solid $borderColor
-    background: $backGroundColor
-    justify-content: center
-    z-index: 2
+    position: fixed
+    display: $flexDisplay
+    flex-wrap: $flexWrap
+    width: 100vw
+    height: 100px
+    background: rgba(0, 0, 0, 0.6)
+    backdrop-filter: blur(10px)
+    -webkit-backdrop-filter: blur(10px)
 
-    div
-        // Users section - top nav
-        .user,
-        .user-left,
-        .user-right
-            display: flex
-            flex-wrap: wrap
-            justify-content: center
-            align-content: center
-            align-items: center
-            border-bottom: $borderSize solid $borderColor
+    .menu-container
+        display: $flexDisplay
+        flex-wrap: $flexWrap
+        width: 100vw
+        justify-content: space-around
+        align-items: center
+        border-bottom: 1px solid $darkWhite
 
-        .user-left,
-        .user-right
-            border-bottom: none
+        .menu-right
+            border: 1px solid $darkWhite
+            border-radius: 50px
+            gap: 20px
+            
+            .menu-item
+                position: relative
 
-        .user-left
-            display: flex
-            align-items: center
+                button
+                    color: white
+                    font-size: 15px
+                    background-color: red
+                    border: none
+                    letter-spacing: 1px
 
-        .user-right li button
-            background: inherit
-            color: inherit
-            border: inherit
-            font-size: inherit
-
-        // Menu sections - second nav
-        .menu,
         .menu-left,
         .menu-right
-            display: flex
-            flex-wrap: wrap
-            margin: 20px 0
-            align-content: center
-
-        .menu-left .menuData
-            display: flex
+            padding: 15px 30px
+            display: $flexDisplay
+            justify-content: center
             align-items: center
 
-            button
-                color: inherit
-                font-size: 20px
-                background-color: transparent
-                border: none
-                transition: 0.5s
+            li
+                display: $flexDisplay
+                align-items: center
+                position: relative
+                list-style: none
+                text-decoration: none
+                letter-spacing: 1px
 
-            &:hover
-                color: blue
+            & a
+                color: white
+                text-decoration: none
+                font-size: 15px
 
-            .menu-right #started button
-                background: $backgroundButton
+        div
+            padding: 9px 7px
+            border: 1px solid $darkWhite
+            border-radius: 15px
 
-        .user ul li,
-        .menu ul li
-            position: relative
-            display: inline
-            list-style: none
-            margin: 0 20px
-            letter-spacing: 1px
+            .waitlist
+                letter-spacing: 1px
+                display: inline-block
+                padding: 10px 20px
+                text-align: center
+                text-decoration: none
+                color: #fff
+                background: linear-gradient(45deg, $darkPurple, #7c4fba, $darkPurple)
+                font-size: 15px
+                border-radius: 10px
 
-        & a
-            color: white
-            text-decoration: none
-            margin: 0 10px
-            transition: 0.5s
+    .dropdown
+        position: absolute
+        margin-top: 10px
+        top: 100%
+        left: 0
+        display: none
+        width: 250px
+        height: 150px
+    
+    .dropdown.show
+        display: block
+        border: 1px solid $darkWhite
+        border-radius: 5px
+        background: #000
 
-        .user ul li a
-            font-size: $fontSize - 5px
-
-        .menu ul li a
-            font-size: $fontSize
-
-            &:hover
-                color: blue
-
-        .menu-left li ul li
-            margin: 20px 0
-
-            a
-                width: 200px
-                padding: 15px
-
-                &:hover
-                    color: red
-                    background: white
-                    border-radius: 20px
-                    text-decoration: underline
-
-:is(.menu-right #demo,.menu-right #started) button
-    padding: 15px
-    color: inherit
-    font-size: inherit
-    border: none
-    background-color: transparent
-    border: 1px solid white
-    cursor: pointer
-    width: 100%
-    display: flex
-    align-content: center
-    justify-content: center
-    border-radius: 20px
-    width: 150px
-
-.dropdown
-    position: absolute
-    top: 100%
-    background-color: $backGroundColor
-    opacity: 0
-    transition: opacity 0.5s ease, display 0.5s ease
-    display: none
-    padding: 0
-    z-index: 999
-
-.dropdown.show
-    display: block
-    opacity: 1
