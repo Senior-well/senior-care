@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Dropdown from "../DropDownNav/DropDown";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -15,13 +15,12 @@ const MenuItems = ({ items }) => {
 
     return (
         <li
-            className="menu-item"
+            className={`menu-item ${items.submenus ? "has-dropdown" : ""}`}
             onMouseEnter={submenusDropdownEnter}
             onMouseLeave={submenuesDropdownLeave}
         >
             {items.submenus ? (
                 <>
-                    {items.icon && <FontAwesomeIcon icon={items.icon} />}
                     <button
                         type="button"
                         aria-haspopup="menu"
@@ -29,6 +28,7 @@ const MenuItems = ({ items }) => {
                     >
                         {items.title}{' '}
                     </button>
+                    {items.icon && <FontAwesomeIcon icon={items.icon} />}
                     <Dropdown
                         submenus={items.submenus}
                         dropdown={dropdown}
@@ -42,8 +42,18 @@ const MenuItems = ({ items }) => {
                     }}
                 >
                     {items.icon && <FontAwesomeIcon icon={items.icon} />}
-                    {items.title}
-                    {items.description}
+                    <div className="menu-text">
+                        {dropdown ? (
+                            <>
+                                <span className="menu-title">{items.title}</span>
+                                <span className="menu-description">{items.description}</span>
+                            </>
+                        ) : (
+                            <>
+                                {items.title}
+                            </>)
+                        }
+                    </div>
                 </a>
             )
             }

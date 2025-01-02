@@ -1,6 +1,9 @@
+import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
+
 export const menuData = [
     {
         title: 'Features',
+        icon: faCaretDown,
         submenus: [
             {
                 title: 'Dashboard',
@@ -25,6 +28,7 @@ export const menuData = [
     },
     {
         title: 'Company',
+        icon: faCaretDown,
         submenus: [
             {
                 title: 'About',

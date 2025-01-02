@@ -27,18 +27,25 @@ $darkPurple: rgb(85, 26, 139)
             gap: 20px
             
             .menu-item
-                position: relative
-
                 button
                     color: white
                     font-size: 15px
-                    background-color: red
+                    background-color: transparent
                     border: none
                     letter-spacing: 1px
 
+                .menu-text
+                    display: $flexDisplay
+                    border: none
+                    flex-direction: column
+
+                    .menu-title,
+                    .menu-description
+                        font-size: 20px
+
         .menu-left,
         .menu-right
-            padding: 15px 30px
+            padding: 12px 30px
             display: $flexDisplay
             justify-content: center
             align-items: center
@@ -74,12 +81,11 @@ $darkPurple: rgb(85, 26, 139)
 
     .dropdown
         position: absolute
-        margin-top: 10px
         top: 100%
         left: 0
         display: none
         width: 250px
-        height: 150px
+        height: 200px
     
     .dropdown.show
         display: block
