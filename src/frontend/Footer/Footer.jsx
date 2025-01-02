@@ -63,7 +63,7 @@ const Footer = () => {
       </div>
 
       <div className="footer-bottom">
-        <p>&copy; Senior Well 2024</p>
+        <p>SWT &copy; 2025</p>
       </div>
     </footer>
   );
