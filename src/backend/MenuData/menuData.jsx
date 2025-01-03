@@ -1,4 +1,4 @@
-import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import { faCaretDown, faUser, faChartSimple, faExclamationTriangle, faAddressCard, faAddressBook } from "@fortawesome/free-solid-svg-icons";
 
 export const menuData = [
     {
@@ -7,16 +7,19 @@ export const menuData = [
         submenus: [
             {
                 title: 'Dashboard',
+                icon: faUser,
                 description: 'Patient Information',
                 url: '/dashboard'
             },
             {
                 title: 'Tracker',
+                icon: faChartSimple,
                 description: 'Record Update Immediately',
                 url: '/tracker'
             },
             {
                 title: 'Automated alerts',
+                icon: faExclamationTriangle,
                 description: 'Request Emergency Arrival',
                 url: '/alerts'
             },
@@ -32,11 +35,13 @@ export const menuData = [
         submenus: [
             {
                 title: 'About',
+                icon: faAddressCard,
                 description: 'Our contribution',
                 url: '/about'
             },
             {
                 title: 'Contact',
+                icon: faAddressBook,
                 description: 'Get in touch',
                 url: '/contact'
             },
