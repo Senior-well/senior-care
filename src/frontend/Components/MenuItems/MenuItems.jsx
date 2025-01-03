@@ -15,7 +15,7 @@ const MenuItems = ({ items }) => {
 
     return (
         <li
-            className={`menu-item ${items.submenus ? "has-dropdown" : ""}`}
+            className='menu-item'
             onMouseEnter={submenusDropdownEnter}
             onMouseLeave={submenuesDropdownLeave}
         >
@@ -42,18 +42,7 @@ const MenuItems = ({ items }) => {
                     }}
                 >
                     {items.icon && <FontAwesomeIcon icon={items.icon} />}
-                    <div className="menu-text">
-                        {dropdown ? (
-                            <>
-                                <span className="menu-title">{items.title}</span>
-                                <span className="menu-description">{items.description}</span>
-                            </>
-                        ) : (
-                            <>
-                                {items.title}
-                            </>)
-                        }
-                    </div>
+                    {items.title}
                 </a>
             )
             }
