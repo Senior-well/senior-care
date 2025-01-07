@@ -2,6 +2,7 @@ $flexDisplay: flex
 $flexWrap: wrap
 $darkWhite: #ffffff2e
 $darkPurple: rgb(85, 26, 139)
+$iconColor: linear-gradient(45deg, #1B1A55, purple)
 
 .Nav
     position: fixed
@@ -22,6 +23,8 @@ $darkPurple: rgb(85, 26, 139)
         border-bottom: 1px solid $darkWhite
 
         .menu-right
+            background: red
+            position: relative
             border: 1px solid $darkWhite
             border-radius: 50px
             gap: 20px
@@ -33,15 +36,47 @@ $darkPurple: rgb(85, 26, 139)
                     background-color: transparent
                     border: none
                     letter-spacing: 1px
+                
+            .dropdown
+                display: none
+                height: auto
+                    
+                &.show
+                    display: block
+                    border: 1px solid $darkWhite
+                    border-radius: 5px
+                    background: #000
+                    padding: 0
 
-                .menu-text
+                .dropdownComp 
                     display: $flexDisplay
-                    border: none
-                    flex-direction: column
+                    flex-wrap: $flexWrap
+                    align-content: center
+                    padding: 25px 20px
 
-                    .menu-title,
-                    .menu-description
-                        font-size: 16px
+                    .menu-icon
+                        display: $flexDisplay
+                        align-items: center
+                        justify-content: center
+                        width: 50px
+                        height: 50px
+                        background: $iconColor
+                        border-radius: 10px
+
+                    .menu-text
+                        gap: 5px
+                        display: $flexDisplay
+                        border: none
+                        width: 250px
+                        flex-direction: column
+
+                        .menu-title
+                            font-size: 15px
+                            font-weight: bold
+                                    
+                        .menu-description
+                            opacity: 0.5
+                            font-size: 14px
 
         .menu-left,
         .menu-right
@@ -78,18 +113,3 @@ $darkPurple: rgb(85, 26, 139)
                 background: linear-gradient(45deg, $darkPurple, #7c4fba, $darkPurple)
                 font-size: 15px
                 border-radius: 10px
-
-    .dropdown
-        position: absolute
-        top: 100%
-        left: 0
-        display: none
-        width: 100vw
-        height: 200px
-    
-    .dropdown.show
-        display: block
-        border: 1px solid $darkWhite
-        border-radius: 5px
-        background: #000
-
