@@ -1,38 +1,23 @@
-import React, { useState } from "react";
-import Dropdown from "../DropDownNav/DropDown";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const MenuItems = ({ items }) => {
-    const [dropdown, setDropdown] = useState(false);
-
-    const submenusDropdownEnter = () => {
-        setDropdown(true);
-    };
-
-    const submenuesDropdownLeave = () => {
-        setDropdown(false);
-    };
-
+const MenuItems = ({ items, onMouseEnter, onMouseLeave }) => {
     return (
         <li
             className='menu-item'
-            onMouseEnter={submenusDropdownEnter}
-            onMouseLeave={submenuesDropdownLeave}
+            onMouseEnter={() => onMouseEnter(items.submenus)}
+            onMouseLeave={onMouseLeave}
         >
             {items.submenus ? (
                 <>
                     <button
                         type="button"
                         aria-haspopup="menu"
-                        aria-expanded={dropdown ? "true" : "false"}
+                        aria-expanded="false"
                     >
                         {items.title}{' '}
                     </button>
                     {items.icon && <FontAwesomeIcon icon={items.icon} />}
-                    <Dropdown
-                        submenus={items.submenus}
-                        dropdown={dropdown}
-                    />
                 </>
             ) : (
                 <a
