@@ -38,6 +38,8 @@ export default function Nav() {
                         <Dropdown
                             submenus={dropdown.submenus}
                             dropdown={dropdown.visible}
+                            onMouseEnter={() => handleMouseEnter(dropdown.submenus)}
+                            onMouseLeave={handleMouseLeave}
                         />)
                     }
                 </ul>
