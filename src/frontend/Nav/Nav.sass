@@ -23,24 +23,33 @@ $iconColor: linear-gradient(45deg, #1B1A55, purple)
         border-bottom: 1px solid $darkWhite
 
         .menu-right
-            background: red
             position: relative
+            display: $flexDisplay
             border: 1px solid $darkWhite
-            border-radius: 50px
-            gap: 20px
-            
+            border-radius: 10px
+            padding: 0
+
             .menu-item
+                position: relative
+                height: 100%
+                padding: 12px 15px
+                border: 1px solid transparent
+                border-radius: 10px
+
                 button
                     color: white
                     font-size: 15px
                     background-color: transparent
                     border: none
                     letter-spacing: 1px
-                
+
+                &:hover 
+                    border: 1px solid $darkWhite
+
             .dropdown
                 display: none
                 height: auto
-                    
+
                 &.show
                     display: block
                     border: 1px solid $darkWhite
@@ -52,35 +61,48 @@ $iconColor: linear-gradient(45deg, #1B1A55, purple)
                     display: $flexDisplay
                     flex-wrap: $flexWrap
                     align-content: center
-                    padding: 25px 20px
+                    padding: 15px 20px
 
-                    .menu-icon
+                    a
                         display: $flexDisplay
                         align-items: center
-                        justify-content: center
-                        width: 50px
-                        height: 50px
-                        background: $iconColor
+                        width: 100vw
+                        border: 1px solid transparent
                         border-radius: 10px
 
-                    .menu-text
-                        gap: 5px
-                        display: $flexDisplay
-                        border: none
-                        width: 250px
-                        flex-direction: column
+                        &:hover
+                            border: 1px solid $darkWhite
 
-                        .menu-title
-                            font-size: 15px
-                            font-weight: bold
-                                    
-                        .menu-description
-                            opacity: 0.5
-                            font-size: 14px
+                        .menu-icon
+                            display: $flexDisplay
+                            align-items: center
+                            justify-content: center
+                            width: 50px
+                            height: 50px
+                            background: $iconColor
+                            border-radius: 10px
+                            margin: 10px 15px
+
+                        .menu-text
+                            gap: 5px
+                            display: $flexDisplay
+                            border: none
+                            width: 250px
+                            flex-direction: column
+
+                            .menu-title
+                                font-size: 15px
+                                font-weight: bold
+                                        
+                            .menu-description
+                                opacity: 0.5
+                                font-size: 14px
+
+        .menu-left
+            padding: 12px 30px
 
         .menu-left,
         .menu-right
-            padding: 12px 30px
             display: $flexDisplay
             justify-content: center
             align-items: center
