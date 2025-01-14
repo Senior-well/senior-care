@@ -1,62 +1,24 @@
-$displayFlex: flex
-$flexWrap: wrap
-$displayCenter: center
-$backgroundColor: #000
+$flexDisplay: flex
 
 .homePage
-    display: $displayFlex
-    flex-wrap: $flexWrap
-    justify-content: $displayCenter
-    align-items: $displayCenter
+    display: $flexDisplay
+    align-items: center
+    justify-content: center
     height: 100vh
-    background: $backgroundColor
 
-.homePage .headerHP
-    display: $displayFlex
-    flex-wrap: $flexWrap
-    justify-content: $displayCenter
-    align-items: $displayCenter
-    align-content: center
-    margin: 20px 30px
-    width: 30vw
+    .homePageContainer
+        display: $flexDisplay
+        align-items: center
+        width: 60%
+        height: 70%
 
-.homePage .headerHP h1,
-.homePage .headerHP p
-    display: flex
-    text-align: center
-    word-spacing: 3px
+        .image-wrapper
+            opacity: 1
+            transition: opacity 1s ease-in-out
 
-.homePage .headerHP h1
-    font-size: 30px
+            &.fade-out, 
+            &.hidden
+                opacity: 0
 
-.homePage .headerHP p
-    font-size: 16px
-
-.homePage .headerHP button
-    display: $displayFlex
-    flex-wrap: $flexWrap 
-    padding: 10px
-    border-radius: 20px
-    margin-right: 20px
-    width: 220px 
-    height: 40px
-    justify-content: $displayCenter
-    align-items: $displayCenter
-    font-weight: bold
-    z-index: 1
-
-.homePage .headerHP button:nth-child(even)
-    border: 0px
-    margin-right: 30px 
-    color: #10151F
-    transition: 0.5s
-
-.homePage .headerHP button:nth-child(odd)
-    color: white
-    background: transparent 
-    border: 2px white solid
-    transition: 0.5s
-
-.homePage .headerHP button:nth-child(even):hover,
-.homePage .headerHP button:nth-child(odd):hover
-    transform: scale(1.1)
+            &.fade-in
+                opacity: 1
