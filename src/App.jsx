@@ -2,7 +2,7 @@ import { React } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import './App.sass';
 import Nav from './frontend/Nav/Nav';
-import HomePage from './frontend/HomePage/homePage';
+import HomePage from './frontend/HomePage/HomePage';
 import Footer from './frontend/Footer/Footer';
 import Login from './frontend/Components/loginPage/login';
 import PatientInfo from './frontend/PatientInfor/PatientInfor';
