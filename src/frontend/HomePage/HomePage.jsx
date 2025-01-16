@@ -19,6 +19,9 @@ export default function HomePage() {
     const [showSlogan, setShowSlogan] = useState(false);
     const fadeOutTimeOut = useRef(0);
 
+    // Generate Backgroud objects
+    const backgroundObjects = Array.from({ length: 6 }, (_, i) => <i key={i} className={`obj${i}`}></i>);
+
     useEffect(() => {
         let timer;
         // Reset the cycle
@@ -66,8 +69,6 @@ export default function HomePage() {
         return () => clearInterval(timer);
     }, [isReversing, imgHomepage.length, showSlogan]);
 
-    // Your Health, our priority every day
-    // Stay healthier, live happier - empowering you with personalized care and peach of mind for a life well-lived
     return (
         <div className="homePage">
             <div className="homePageContainer">
@@ -79,7 +80,7 @@ export default function HomePage() {
                 ) : (
                     <>
                         <div className="headingText question-enter">
-                            <h1>Do you value staying independent while feeling supported?</h1>
+                            <h1>Do you value staying independent While feeling supported?</h1>
                         </div>
                         {imgHomepage.map((image, index) => (
                             <ImagesDuplicate
@@ -100,10 +101,13 @@ export default function HomePage() {
                                     zIndex: imgHomepage.length - index,
                                 }}
                             />
-                        ))
-                        }
+                        ))}
                     </>
                 )}
+                {backgroundObjects}
+            </div>
+            <div className="scrollDown">
+                <span className="caret-down"></span>
             </div>
         </div>
     );

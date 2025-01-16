@@ -1,10 +1,19 @@
 $flexDisplay: flex
+$darkBlue: rgba(54, 14, 146, 0.65)
+
+@mixin objectBackground($top, $left, $backgroundColor, $boxShadowColor, $time)
+    top: $top
+    left: $left
+    background: -webkit-radial-gradient(center, ellipse cover, $backgroundColor 0%, rgba(0, 0, 0, 0) 100%)
+    box-shadow: 0px 0px 5px 0px $boxShadowColor
+    animation-duration: $time
 
 .homePage
     display: $flexDisplay
     align-items: center
     justify-content: center
     height: 100vh
+    overflow: hidden
 
     .homePageContainer
         position: relative
@@ -30,7 +39,7 @@ $flexDisplay: flex
             flex-direction: column
             justify-content: center
             text-align: center
-            width: 500px
+            width: 40vw
             left: 0
             right: 0
             margin: 0 auto
@@ -43,12 +52,58 @@ $flexDisplay: flex
                 animation: questionAnimation 7.2s ease-in-out forwards
 
             h1
+                font-size: 2.5vw
                 background: radial-gradient(circle farthest-corner at center center, rgba(255, 94, 247, 1) 17.8%, rgba(2, 245, 255, 1) 100.2%)
                 -webkit-background-clip: text
                 background-clip: text
                 color: transparent
                 font-style: 'italic'
                 font-family: 'Playfair Display', serif
+
+        i
+            position: absolute
+            width: 120px
+            height: 120px
+            border-radius: 50%
+            -webkit-animation: backgroundEffect infinite
+            animation: backgroundEffect infinite
+            z-index: 0
+            
+        .obj0
+            @include objectBackground(20px, 0px, $darkBlue, #1d1d9f, 5s)    
+        .obj1
+            @include objectBackground(360px, 90%, $darkBlue, #1d1d9f, 7s)
+        .obj2
+            @include objectBackground(50%, 50%, $darkBlue, #1d1d9f, 3s)
+        .obj3
+            @include objectBackground(360px, 20%, $darkBlue, #1d1d9f, 9s)
+        .obj4
+            @include objectBackground(10%, 70%, $darkBlue, #1d1d9f, 4s)
+
+    .scrollDown
+        display: $flexDisplay
+        justify-content: center
+        position: absolute
+        bottom: 0
+        opacity: 0.5
+        animation: caretDownDisplay 1.5s ease-in-out infinite
+
+        .caret-down
+            position: relative
+            background: white
+            width: 10px
+            height: 50px
+            border-radius: 20px
+            transform: rotate(-60deg) translate(-10px,-15px)
+
+            &:after
+                content: ''
+                display: block
+                background: white
+                width: 10px
+                height: 50px
+                border-radius: 20px
+                transform: rotate(-60deg) translate(-17.5px,30px)
 
 @keyframes slideInAndOut
     0% 
@@ -77,3 +132,30 @@ $flexDisplay: flex
     100%
         opacity: 0
         transform: translateY(-130px)
+
+@keyframes backgroundEffect
+    from
+        opacity: 0
+
+    25%
+        opacity: 0.75
+        transform: scale3d(3, 3, 4)
+
+    50%
+        opacity: 0.5
+
+    75%
+        opacity: 0.3
+
+    to
+        opacity: 0
+
+@keyframes caretDownDisplay
+    0%
+        transform: translateY(0px)
+
+    50%
+        transform: translateY(-20px)
+
+    100%
+        transform: translateY(0px)
