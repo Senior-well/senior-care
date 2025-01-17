@@ -128,7 +128,7 @@ export default function HomePage() {
                 {backgroundObjects}
             </div>
             <div className="scrollDown">
-                <span className={`caret-down ${caretVisibility}`}></span>
+                <span className={`caret-down${caretVisibility}`}></span>
             </div>
         </div>
     );
