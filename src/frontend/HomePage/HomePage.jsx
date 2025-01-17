@@ -20,7 +20,7 @@ export default function HomePage() {
     const fadeOutTimeOut = useRef(0);
 
     // Generate Backgroud objects
-    const backgroundObjects = Array.from({ length: 6 }, (_, i) => <i key={i} className={`obj${i}`}></i>);
+    const backgroundObjects = Array.from({ length: 5 }, (_, i) => <i key={i} className={`obj${i}`}></i>);
 
     useEffect(() => {
         let timer;
