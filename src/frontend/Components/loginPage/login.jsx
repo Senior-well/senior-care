@@ -214,7 +214,7 @@ export default function Login() {
                 {
                     type: 'password',
                     label: 'Confirm password',
-                    placeholder: 'Enter your password again'
+                    placeholder: 'Re-enter your password'
                 }
             ]
         }
