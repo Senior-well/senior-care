@@ -67,6 +67,7 @@ $darkBlue: rgba(54, 14, 146, 0.65)
             border-radius: 50%
             -webkit-animation: backgroundEffect infinite
             animation: backgroundEffect infinite
+            filter: blur(10px)
             z-index: 0
             
         .obj0
@@ -94,6 +95,8 @@ $darkBlue: rgba(54, 14, 146, 0.65)
             width: 10px
             height: 50px
             border-radius: 20px
+            opacity: 1
+            transition: opacity 0.5s
             transform: rotate(-60deg) translate(-10px,-15px)
 
             &:after
@@ -104,6 +107,9 @@ $darkBlue: rgba(54, 14, 146, 0.65)
                 height: 50px
                 border-radius: 20px
                 transform: rotate(-60deg) translate(-17.5px,30px)
+
+            &.hidden
+                opacity: 0
 
 @keyframes slideInAndOut
     0% 
