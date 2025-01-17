@@ -17,12 +17,30 @@ export default function HomePage() {
     const [visibleIndex, setVisibleIndex] = useState([]);
     const [isReversing, setIsReversing] = useState(false);
     const [showSlogan, setShowSlogan] = useState(false);
+    const [caretVisibility, setVisibilityCaret] = useState('');
     const fadeOutTimeOut = useRef(0);
 
     // Generate Backgroud objects
     const backgroundObjects = Array.from({ length: 5 }, (_, i) => <i key={i} className={`obj${i}`}></i>);
 
     useEffect(() => {
+        // Scroll down checked
+        let lastScrollY = window.scrollY;
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            if (currentScrollY > lastScrollY) {
+                setVisibilityCaret('hidden');
+            }
+
+            else {
+                setVisibilityCaret('');
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        //----------------------------------------------------------//
+        // Image display
         let timer;
         // Reset the cycle
         if (showSlogan) {
@@ -66,7 +84,10 @@ export default function HomePage() {
                 });
             }, isReversing ? 200 : 500) // 300ms && 500ms
         }
-        return () => clearInterval(timer);
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+            clearInterval(timer);
+        }
     }, [isReversing, imgHomepage.length, showSlogan]);
 
     return (
@@ -107,7 +128,7 @@ export default function HomePage() {
                 {backgroundObjects}
             </div>
             <div className="scrollDown">
-                <span className="caret-down"></span>
+                <span className={`caret-down ${caretVisibility}`}></span>
             </div>
         </div>
     );
