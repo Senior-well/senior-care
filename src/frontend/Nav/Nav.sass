@@ -14,6 +14,10 @@ $iconColor: linear-gradient(45deg, #1B1A55, purple)
     backdrop-filter: blur(10px)
     -webkit-backdrop-filter: blur(10px)
     z-index: 9999
+    transition: transform 0.2s ease-in-out
+
+    &.hide
+        transform: translateY(-100%)
 
     .menu-container
         display: $flexDisplay
