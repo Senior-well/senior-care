@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import './Nav.sass';
 import { menuData } from "../../backend/MenuData/menuData";
 import MenuItems from "../Components/MenuItems/MenuItems";
@@ -7,6 +7,8 @@ import { logoTrans } from "../../images/Images";
 
 export default function Nav() {
     const [dropdown, setDropdown] = useState({ visible: false, submenus: [] });
+    const [translateNav, setTranslateNav] = useState(false);
+    const lastScrollY = useRef(0);
 
     const handleMouseEnter = (submenus) => {
         if (submenus) {
@@ -18,8 +20,25 @@ export default function Nav() {
         setDropdown({ visible: false, submenus: [] });
     };
 
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            if (currentScrollY > lastScrollY.current) {
+                setTranslateNav(true);
+            }
+            else {
+                setTranslateNav(false);
+            }
+
+            // Update lastScrollY value so whenever scrolling up, it will show the Nav Bar
+            lastScrollY.current = currentScrollY;
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => { window.removeEventListener('scroll', handleScroll) };
+    }, []);
+
     return (
-        <nav className="Nav">
+        <nav className={`Nav ${translateNav ? 'hide' : ''}`}>
             <div className="menu-container">
                 <ul className="menu-left">
                     <li><img src={logoTrans} style={{ width: '30px' }} alt="Logo"></img></li>
