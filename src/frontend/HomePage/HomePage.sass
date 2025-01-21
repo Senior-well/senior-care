@@ -1,5 +1,6 @@
 $flexDisplay: flex
 $darkBlue: rgba(54, 14, 146, 0.65)
+$iconColor: linear-gradient(45deg, #1B1A55, purple)
 
 @mixin objectBackground($top, $left, $backgroundColor, $boxShadowColor, $time)
     top: $top
@@ -26,7 +27,7 @@ $darkBlue: rgba(54, 14, 146, 0.65)
             opacity: 0.5
             transition: opacity 1s ease-in-out
 
-            &.fade-out, 
+            &.fade-out,
             &.hidden
                 opacity: 0
 
@@ -69,9 +70,9 @@ $darkBlue: rgba(54, 14, 146, 0.65)
             animation: backgroundEffect infinite
             filter: blur(10px)
             z-index: 0
-            
+
         .obj0
-            @include objectBackground(20px, 0px, $darkBlue, #1d1d9f, 5s)    
+            @include objectBackground(20px, 0px, $darkBlue, #1d1d9f, 5s)
         .obj1
             @include objectBackground(360px, 90%, $darkBlue, #1d1d9f, 7s)
         .obj2
@@ -111,11 +112,63 @@ $darkBlue: rgba(54, 14, 146, 0.65)
             &.hidden
                 opacity: 0
 
+.location
+    display: $flexDisplay
+    flex-direction: column
+    margin-top: 20px
+    height: 100vh
+
+    .location-wrapper
+        position: relative
+        display: $flexDisplay
+        justify-content: center
+        border-bottom: 1px solid white
+
+        img
+            width: 90vw
+
+        .Ottawa
+            display: $flexDisplay
+            align-items: center
+            gap: 10px
+            position: absolute
+            top: 18%
+            left: 31.5%
+
+            &:before
+                content: ''
+                display: block
+                width: 15px
+                height: 15px
+                border-radius: 50%
+                background: white
+                animation: blinking 1s infinite linear
+
+    .location-info
+        display: $flexDisplay
+        height: 100%
+
+        span
+            display: $flexDisplay
+            align-items: center
+            width: 100%
+            justify-content: space-around
+
+            .homePageIcon
+                display: $flexDisplay
+                justify-content: center
+                text-align: center
+                background: $iconColor
+                width: 10vw
+                height: 10vh
+                gap: 10px
+                border-radius: 1vw
+
 @keyframes slideInAndOut
-    0% 
+    0%
         opacity: 0
         transform: translateY(50px)
-    30% 
+    30%
         opacity: 1
         transform: translateY(0)
     70%
@@ -126,10 +179,10 @@ $darkBlue: rgba(54, 14, 146, 0.65)
         transform: translateY(-50px)
 
 @keyframes questionAnimation
-    0% 
+    0%
         opacity: 0
         transform: translateY(130px)
-    30% 
+    30%
         opacity: 1
         transform: translateY(0)
     70%
@@ -165,3 +218,15 @@ $darkBlue: rgba(54, 14, 146, 0.65)
 
     100%
         transform: translateY(0px)
+
+@keyframes blinking
+    0%
+        opacity: 1
+        transform: scale(1)
+    50%
+        opacity: 0.5
+        background: orange
+        transform: scale(1.5)
+    100%
+        opacity: 1
+        transform: scale(1)
