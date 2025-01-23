@@ -1,72 +1,49 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import './Footer.sass';
 import { logoTrans } from '../../images/Images'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FooterData } from "../../backend/FooterData/footerData";
 
-const Footer = () => {
+export default function Footer() {
+  const [transformLogo, setTransformLogo] = useState({});
+  const year = new Date().getFullYear();
+
+  useEffect(() => {
+    setTransformLogo({ transform: 'rotate(90deg)' });
+  }, []);
+
   return (
     <footer className="footer">
       <div className="footer-content">
-        <div className="footer-section logo">
-          <img src={logoTrans} alt="Senior Well Logo" />
-        </div>
-
-        <div className="footer-section">
-          <h4>Documents</h4>
-          <ul>
-            {/* eslint-disable-next-line */}
-            <li><a href="#">Overview</a></li>
-            {/* eslint-disable-next-line */}
-            <li><a href="#">How-to guides</a></li>
-            {/* eslint-disable-next-line */}
-            <li><a href="#">Community support</a></li>
-          </ul>
-        </div>
-
-        <div className="footer-section">
-          <h4>Senior Care</h4>
-          <ul>
-            {/* eslint-disable-next-line */}
-            <li><a href="#">Products</a></li>
-            {/* eslint-disable-next-line */}
-            <li><a href="#">Software</a></li>
-            {/* eslint-disable-next-line */}
-            <li><a href="#">Forums</a></li>
-          </ul>
-        </div>
-
-        <div className="footer-section">
-          <h4>Resources</h4>
-          <ul>
-            {/* eslint-disable-next-line */}
-            <li><a href="#">Privacy Policy</a></li>
-            {/* eslint-disable-next-line */}
-            <li><a href="#">FAQ</a></li>
-            {/* eslint-disable-next-line */}
-            <li><a href="#">News</a></li>
-          </ul>
-        </div>
-
-        <div className="footer-section follow-us">
-          <h4>Follow us</h4>
-          <div className="social-icons">
-            <a href="https://www.linkedin.com/company/senior-well" target="_blank" rel="noopener noreferrer">
-              <i className="fab fa-linkedin"></i>
-            </a>
-            <a href="https://github.com/Senior-well" target="_blank" rel="noopener noreferrer">
-              <i className="fab fa-github"></i>
-            </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-              <i className="fab fa-twitter"></i>
-            </a>
+        <div className="footer-left">
+          <div className="img-wrapper">
+            <img src={logoTrans} alt="Logo" style={transformLogo} />
+            <p>SWT {year}</p>
+          </div>
+          <div className="social-media">
+            {FooterData[4]?.socialMedia?.map((social, index) => (
+              <a key={index} href={social.url} target="_blank">
+                <FontAwesomeIcon icon={social.name} size="2xl" />
+              </a>
+            ))}
           </div>
         </div>
-      </div>
 
-      <div className="footer-bottom">
-        <p>SWT &copy; 2025</p>
+        <div className="footer-right">
+          {FooterData.slice(0, 4).map((data, index) => (
+            <div key={index} className="footer-right-content">
+              <h4>{data.title}</h4>
+              <ul>
+                {data.links.map((link, index) => (
+                  <li key={index}>
+                    <a href={link.url} target="_blank">{link.name}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
       </div>
     </footer>
   );
 };
-
-export default Footer;
