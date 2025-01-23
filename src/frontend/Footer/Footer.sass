@@ -1,0 +1,67 @@
+$flexDisplay: flex
+$darkWhite: #ffffff2e
+
+.footer
+  border-top: 3px solid $darkWhite
+  height: 50vh
+
+  .footer-content
+    display: $flexDisplay
+    height: 100%
+
+    .footer-left
+      display: $flexDisplay
+      flex-wrap: wrap
+      flex-direction: column
+      padding: 0 50px
+      width: 40%
+
+      .img-wrapper
+        display: $flexDisplay
+        align-items: center
+        height: 50%
+        
+        img
+          height: 8vh
+
+      .social-media
+        display: $flexDisplay
+        height: 50%
+
+        a
+          text-decoration: none
+          margin: 20px
+          opacity: 0.5
+          height: 30px
+
+          &:hover
+              opacity: 1
+
+          svg path
+            fill: white
+
+    .footer-right
+      width: 60%
+      display: $flexDisplay
+      flex-wrap: wrap
+      padding: 10vh 0
+      justify-content: space-evenly
+
+      .footer-right-content
+        ul
+          list-style-type: none
+          padding: 0
+
+          li
+            margin: 15px 0
+
+            a
+              color: white
+              text-decoration: none
+              font-size: 15px
+              font-weight: 500
+              opacity: 0.5
+
+              &:hover
+                opacity: 1
+                text-decoration: underline
