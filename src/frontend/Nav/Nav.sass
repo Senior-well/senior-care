@@ -48,7 +48,7 @@ $iconColor: linear-gradient(45deg, #1B1A55, purple)
                     border: none
                     letter-spacing: 1px
 
-                &:hover 
+                &:hover
                     border: 1px solid $darkWhite
 
             .dropdown
@@ -62,7 +62,7 @@ $iconColor: linear-gradient(45deg, #1B1A55, purple)
                     background: #000
                     padding: 0
 
-                .dropdownComp 
+                .dropdownComp
                     display: $flexDisplay
                     flex-wrap: $flexWrap
                     align-content: center
@@ -98,7 +98,7 @@ $iconColor: linear-gradient(45deg, #1B1A55, purple)
                             .menu-title
                                 font-size: 15px
                                 font-weight: bold
-                                        
+
                             .menu-description
                                 opacity: 0.5
                                 font-size: 14px
@@ -125,18 +125,48 @@ $iconColor: linear-gradient(45deg, #1B1A55, purple)
                 text-decoration: none
                 font-size: 15px
 
-        div
-            padding: 9px 7px
-            border: 1px solid $darkWhite
-            border-radius: 15px
+        .employee-login
+            position: relative
 
-            .waitlist
-                letter-spacing: 1px
-                display: inline-block
-                padding: 10px 20px
-                text-align: center
-                text-decoration: none
-                color: #fff
-                background: linear-gradient(45deg, $darkPurple, #7c4fba, $darkPurple)
-                font-size: 15px
+            .login-container
+                padding: 9px 7px
+                border: 1px solid $darkWhite
+                border-radius: 15px
+
+                .login
+                    letter-spacing: 1px
+                    display: inline-block
+                    padding: 10px 20px
+                    text-align: center
+                    text-decoration: none
+                    color: #fff
+                    background: linear-gradient(45deg, $darkPurple, #7c4fba, $darkPurple)
+                    font-size: 15px
+                    border-radius: 10px
+
+            .login-dropdown
+                background: #424141
+                position: absolute
+                width: 100%
+                display: none
+                flex-direction: column
                 border-radius: 10px
+
+                &.show
+                    display: block
+
+                form
+                    margin: 20px 0
+
+                    div
+                        display: $flexDisplay
+                        flex-direction: column
+
+                        label
+                            margin: 0 20px
+
+                        input
+                            margin: 0 20px 10px 20px
+
+                    button
+                        margin: 0 20px
