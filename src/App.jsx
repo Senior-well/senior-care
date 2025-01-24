@@ -4,8 +4,6 @@ import './App.sass';
 import Nav from './frontend/Nav/Nav';
 import HomePage from './frontend/HomePage/HomePage';
 import Footer from './frontend/Footer/Footer';
-import Login from './frontend/Components/loginPage/login';
-import PatientInfo from './frontend/PatientInfor/PatientInfor';
 import { UserProvider } from './frontend/Components/Context/UserContent';
 
 export default function App() {
@@ -23,35 +21,6 @@ export default function App() {
                   <div className='Main-content'>
                     <Nav />
                     <HomePage />
-                  </div>
-                  <Footer />
-                </>
-              }
-            />
-        
-
-            {/* Routes for login */}
-            
-            <Route
-              path='/sign-in'
-              element={
-                <>
-                  <div className='Login-page'>
-                    <Login />
-                  </div>
-                  <Footer />
-                </>
-              }
-            />
-          
-            {/* Routes for user information */}
-            <Route
-              path='/'
-              element={
-                <>
-                  {/* <Nav /> */}
-                  <div className='User-Information'>
-                      <PatientInfo />
                   </div>
                   <Footer />
                 </>
