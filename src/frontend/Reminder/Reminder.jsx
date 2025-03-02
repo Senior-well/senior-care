@@ -1,31 +1,72 @@
 import { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Caregiver from '../Caregiver/Caregiver'; // Import the Caregiver component
-import HomePage from '../HomePage/HomePage';
-import './Reminder.sass';
+import emailjs from "emailjs-com";
+import "./Reminder.sass";
 
 const ElderCareReminder = () => {
     return (
-        <Router>
-            <div>
-                <div className="navbar flex space-x-1 p-4 bg-gray-200">
-                    <Link to="/homepage" className="cursor-pointer text-blue-500">Home</Link>
-                    <Link to="/reminders" className="cursor-pointer text-blue-500">Reminders</Link>
-                </div>
-
-                <Routes>
-                    <Route path="/" element={<Caregiver />} />
-                    <Route path="/homepage" element={<HomePage />} />
-                    <Route path="/reminders" element={<ReminderSettings />} />
-                </Routes>
-            </div>
-        </Router>
+        <div>
+            {/* Navbar with links */}
+            <ul className="navbar flex space-x-5 p-7 bg-gray-200">
+                <li><a href="/reminder" className="cursor-pointer text-blue-500">Home</a></li>
+                <li><a href="/" className="cursor-pointer text-blue-500">Logout</a></li>
+            </ul>
+            <ReminderSettings />
+        </div>
     );
 };
 
-// Reminder Settings Component (Moved from ElderCareReminder)
+// Reminder Settings Component with Email Functionality
 const ReminderSettings = () => {
     const [activeTab, setActiveTab] = useState("medication");
+    const [formData, setFormData] = useState({
+        sender: "",
+        recipient: "",
+        subject: "",
+        message: "",
+    });
+    const [isOpen, setIsOpen] = useState(false);
+
+    // Handles input changes for form data
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    // Handles setting email content dynamically
+    const prepareEmail = () => {
+        let subject, message;
+
+        if (activeTab === "medication") {
+            subject = "Medication Reminder";
+            message = `Medication: ${formData.medication}\nDose Time: ${formData.doseTime}\nDosage: ${formData.dosage}\nNotes: ${formData.notes}`;
+        } else {
+            subject = "Appointment Reminder";
+            message = `Appointment: ${formData.appointment}\nTime: ${formData.appointmentTime}\nLocation: ${formData.location}`;
+        }
+
+        setFormData((prev) => ({
+            ...prev,
+            subject,
+            message,
+        }));
+
+        setIsOpen(true);
+    };
+
+    // Sends email via EmailJS
+    const sendEmail = async () => {
+        try {
+            await emailjs.send(
+                "service_mjaoomd",
+                "template_1qqu468",
+                formData,
+                "G1puXBN89pJT9zvhP"
+            );
+            alert("Email sent successfully!");
+            setIsOpen(false);
+        } catch (error) {
+            console.error("Error sending email:", error);
+        }
+    };
 
     return (
         <div className="container p-6">
@@ -50,56 +91,123 @@ const ReminderSettings = () => {
                 </div>
             </div>
 
+            {/* Medication Reminder Form */}
             {activeTab === "medication" && (
                 <div className="section p-4 border rounded bg-gray-100">
                     <h3 className="text-lg font-semibold">Medication Reminder Schedule</h3>
-                    <div className="form-group my-2">
-                        <label>Medication Name:</label>
-                        <input type="text" className="border p-2 w-full" placeholder="Enter medication name" />
-                    </div>
-                    <div className="form-group my-2">
-                        <label>Dose Time:</label>
-                        <select className="border p-2 w-full">
-                            <option>Morning</option>
-                            <option>Afternoon</option>
-                            <option>Evening</option>
-                            <option>Night</option>
-                        </select>
-                    </div>
-                    <div className="form-group my-2">
-                        <label>Dosage:</label>
-                        <input type="text" className="border p-2 w-full" placeholder="Enter dosage" />
-                    </div>
-                    <div className="form-group my-2">
-                        <label>Additional Notes:</label>
-                        <textarea className="border p-2 w-full" placeholder="Any additional instructions..."></textarea>
-                    </div>
-                    <button className="button bg-blue-500 text-white p-2 rounded">Set Reminder</button>
+                    <input
+                        type="email"
+                        name="recipient"
+                        placeholder="Recipient Email"
+                        onChange={handleChange}
+                        className="border p-2 w-full mb-2"
+                    />
+                    <input
+                        type="text"
+                        name="medication"
+                        placeholder="Medication Name"
+                        onChange={handleChange}
+                        className="border p-2 w-full mb-2"
+                    />
+                    <select
+                        name="doseTime"
+                        className="border p-2 w-full mb-2"
+                        onChange={handleChange}
+                    >
+                        <option>Morning</option>
+                        <option>Afternoon</option>
+                        <option>Evening</option>
+                        <option>Night</option>
+                    </select>
+                    <input
+                        type="text"
+                        name="dosage"
+                        placeholder="Dosage"
+                        onChange={handleChange}
+                        className="border p-2 w-full mb-2"
+                    />
+                    <textarea
+                        name="notes"
+                        placeholder="Additional Notes"
+                        onChange={handleChange}
+                        className="border p-2 w-full mb-2"
+                    />
+                    <button
+                        onClick={prepareEmail}
+                        className="bg-blue-500 text-white p-2 rounded mt-2"
+                    >
+                        Set & Send Reminder
+                    </button>
                 </div>
             )}
 
+            {/* Appointment Reminder Form */}
             {activeTab === "appointment" && (
                 <div className="section p-4 border rounded bg-gray-100">
                     <h3 className="text-lg font-semibold">Appointment Reminder Schedule</h3>
-                    <div className="form-group my-2">
-                        <label>Appointment Name:</label>
-                        <input type="text" className="border p-2 w-full" placeholder="Enter appointment name" />
+                    <input
+                        type="email"
+                        name="recipient"
+                        placeholder="Recipient Email"
+                        onChange={handleChange}
+                        className="border p-2 w-full mb-2"
+                    />
+                    <input
+                        type="text"
+                        name="appointment"
+                        placeholder="Appointment Name"
+                        onChange={handleChange}
+                        className="border p-2 w-full mb-2"
+                    />
+                    <input
+                        type="datetime-local"
+                        name="appointmentTime"
+                        onChange={handleChange}
+                        className="border p-2 w-full mb-2"
+                    />
+                    <input
+                        type="text"
+                        name="location"
+                        placeholder="Location"
+                        onChange={handleChange}
+                        className="border p-2 w-full mb-2"
+                    />
+                    <button
+                        onClick={prepareEmail}
+                        className="bg-blue-500 text-white p-2 rounded mt-2"
+                    >
+                        Set & Send Reminder
+                    </button>
+                </div>
+            )}
+
+            {/* Email Preview Dialog (using basic modal) */}
+            {isOpen && (
+                <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center">
+                    <div className="bg-white p-6 rounded-lg shadow-lg">
+                        <h2>Email Preview</h2>
+                        <p><strong>To:</strong> {formData.recipient}</p>
+                        <p><strong>Subject:</strong> {formData.subject}</p>
+                        <p>{formData.message}</p>
+                        <div className="flex space-x-2 mt-4">
+                            <button
+                                onClick={() => setIsOpen(false)}
+                                className="bg-gray-300 p-2 rounded"
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                onClick={sendEmail}
+                                className="bg-blue-500 text-white p-2 rounded"
+                            >
+                                Send Email
+                            </button>
+                        </div>
                     </div>
-                    <div className="form-group my-2">
-                        <label>Appointment Time:</label>
-                        <input type="datetime-local" className="border p-2 w-full" />
-                    </div>
-                    <div className="form-group my-2">
-                        <label>Location:</label>
-                        <input type="text" className="border p-2 w-full" placeholder="Enter location" />
-                    </div>
-                    <button className="button bg-blue-500 text-white p-2 rounded">Set Reminder</button>
                 </div>
             )}
         </div>
     );
 };
-
-
 
 export default ElderCareReminder;

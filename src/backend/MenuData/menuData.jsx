@@ -9,7 +9,7 @@ export const menuData = [
                 title: 'Dashboard',
                 icon: faUser,
                 description: 'Patient Information',
-                url: '/dashboard'
+                url: '/caregiver'
             },
             {
                 title: 'Tracker',

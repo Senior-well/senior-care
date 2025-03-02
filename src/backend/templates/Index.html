@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Insights</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Upload Your Data File</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".csv" required>
+            <button type="submit">Upload</button>
+        </form>
+
+        {% if insights %}
+        <h2>Insights</h2>
+        <ul>
+            {% for insight in insights %}
+            <li>{{ insight|safe }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        {% if plot_img %}
+        <h2>Visualization</h2>
+        <img src="data:image/png;base64,{{ plot_img }}" alt="Data Trend Plot">
+        {% endif %}
+
+        <div class="chart-container">
+            <canvas id="barChart"></canvas>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var ctx = document.getElementById('barChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Heart Rate', 'Steps', 'Breathing Pattern', 'Glucose', 'Blood Oxygen'],
+                    datasets: [{
+                        label: 'Health Metrics',
+                        data: [72, 10000, 18, 90, 98], // Sample data, replace dynamically
+                        backgroundColor: ['#007bff', '#28a745', '#dc3545', '#ffc107', '#17a2b8']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
