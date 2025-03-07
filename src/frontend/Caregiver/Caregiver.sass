@@ -1,87 +1,176 @@
-* 
-  margin: 0
-  padding: 0
-  box-sizing: border-box
+// Variables for the colors
+$dark-purple-start: #3e1e69 // Dark purple color start
+$dark-purple-end: #1a0a34 // Dark purple color end
+$background-color: #2f323f // Sidebar background color
+$hover-background-color: lighten(#1e232f, 10%) // Hover background color
 
-body
-  font-family: 'Roboto', sans-serif
-  background-color: #f8f9fa
-  color: #333
-  line-height: 1.6
+// Apply the gradient background to the whole page for Caregiver Dashboard only
+.caregiver-dashboard
+  display: flex
+  justify-content: flex-start // Sidebar should stay fixed on the left
+  height: 100vh
+  background: linear-gradient(to bottom, $dark-purple-start, $dark-purple-end)
+  border: 2px solid black // Black outline around the whole caregiver-dashboard
 
-.container
-  width: 90%
-  max-width: 1200px
-  margin: 0 auto
+  .navigation
+    position: fixed
+    top: 0
+    left: 0
+    width: 250px
+    height: 100vh
+    background: $background-color
+    background: linear-gradient(to bottom, $dark-purple-start, $dark-purple-end) // Gradient on sidebar
+    transition: all 0.3s ease-in-out
+    border: 2px solid black // Black outline around the navigation
 
-header
-  background-color: #000
-  color: white
-  padding: 20px 0
-  text-align: center
+  .menuToggle
+    position: absolute
+    top: 20px
+    left: 230px
+    width: 30px
+    height: 30px
+    background: #fff
+    cursor: pointer
+    transition: all 0.3s ease
+    border-radius: 50%
+    display: none
 
-h1
-  font-size: 32px
-  font-weight: 500
+  ul
+    list-style: none
+    padding: 0
+    margin: 0
+    margin-top: 50px
 
-nav
-  margin-top: 10px
-  background: rgba(54, 14, 146, 0.65)
+  .list
+    width: 100%
 
-  .menu
+    &.active
+      background-color: #1e232f
+
+    a
+      display: flex
+      align-items: center
+      text-decoration: none
+      padding: 10px 20px
+      color: #fff
+      transition: background 0.3s ease
+      position: relative
+
+      span.icon
+        margin-right: 15px
+        font-size: 20px
+
+      span.text
+        font-size: 1.2rem
+
+      &:hover
+        background: $hover-background-color
+
+      &:hover::after
+        content: ''
+        position: absolute
+        left: 0
+        top: 0
+        width: 5px
+        height: 100%
+        background-color: #333 // Active link color
+
+      &::after
+        content: ''
+        position: absolute
+        left: 0
+        top: 0
+        width: 5px
+        height: 100%
+        background-color: transparent
+
+
+  // Main content area to the right of the sidebar
+  main
+    margin-left: 250px // This ensures that the main content has space to the right of the sidebar
+    flex: 1
+    padding: 20px
+    background: linear-gradient(to bottom, $dark-purple-start, $dark-purple-end) // Add the gradient here
     display: flex
     justify-content: center
-    list-style: none
-    padding: 10px 0
+    align-items: flex-start // Keeps the content aligned at the top
 
-  .menu li
-    position: relative
-    margin: 0 15px
+    .dashboard
+      width: 100%
+      max-width: 800px
+      background: #fff
+      padding: 20px
+      border-radius: 8px
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1)
 
-  .menu li a
-    color: white
-    text-decoration: none
-    padding: 10px 20px
-    display: block
-    transition: background-color 0.3s ease
+      h2
+        text-align: center
+        margin-bottom: 20px
 
-  .menu li a:hover
-    background-color: #000
-    border-radius: 4px
+      .elders-list
+        list-style: none
+        padding: 0
+        margin: 0
+        display: flex
+        flex-direction: column
+        align-items: center
 
-main
-  margin: 30px 0
-  padding: 20px
-  background-color: #fff
-  border-radius: 8px
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1)
+      .elder-link
+        text-decoration: none
+        color: #333
+        padding: 10px 20px
+        margin: 5px 0
+        border-radius: 4px
+        background: #f4f4f4
+        transition: background 0.3s ease
+        &:hover
+          background: #ddd
 
-.dashboard
-  h2
-    color: #000
-    margin-bottom: 20px
+      .assign-button
+        display: block
+        margin: 20px auto
+        padding: 10px 20px
+        background: #1e232f
+        color: white
+        border: none
+        border-radius: 4px
+        cursor: pointer
+        transition: background 0.3s ease
+        &:hover
+          background: #333
 
-.elders-list
-  list-style: none
-  padding: 0
+      .assign-form
+        display: flex
+        flex-direction: column
+        align-items: center
 
-.elders-list li
-  margin: 15px 0
+        input
+          padding: 10px
+          margin: 10px 0
+          border-radius: 4px
+          border: 1px solid #ccc
+          width: 100%
 
-.elder-link
-  color: #000
-  text-decoration: none
-  font-weight: 500
+        button
+          padding: 10px 20px
+          background: #4caf50
+          color: white
+          border: none
+          border-radius: 4px
+          cursor: pointer
+          transition: background 0.3s ease
+          &:hover
+            background: #45a049
 
-.elder-link:hover
-  text-decoration: underline
+// Responsive behavior for small screens
+@media screen and (max-width: 768px)
+  .navigation
+    left: -250px // Hide the sidebar by shifting it off-screen
 
-footer
-  background-color: #000
-  color: white
-  padding: 20px 0
-  text-align: center
+  .menuToggle
+    display: block // Show the toggle menu on smaller screens
 
-footer p
-  margin: 0
-  font-size: 14px
+  main
+    margin-left: 0 // Main content takes up the full width on small screens
+    padding: 10px // Adjust padding for small screens
+    background: #fff // Background color for small screens

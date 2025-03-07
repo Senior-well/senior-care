@@ -54,6 +54,8 @@ const ElderProfile = () => {
             <ul className="menu">
               <li><a href="/caregiver">Home</a></li>
               <li><a href="/">Logout</a></li>
+              <li><a href="/profile">Profile</a></li>
+              <li><a href="/mywatch">My Watch</a></li>
             </ul>
           </nav>
         </div>
@@ -61,7 +63,7 @@ const ElderProfile = () => {
       
       <main>
         <section className="profile">
-          <h2>Profile Information</h2>
+          <h2>Home</h2>
           <p><strong>Name:</strong> {elder.name}</p>
           <p><strong>Age:</strong> {elder.age}</p>
           <p><strong>Sex:</strong> {elder.sex}</p>
