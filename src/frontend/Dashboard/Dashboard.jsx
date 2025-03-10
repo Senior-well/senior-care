@@ -1,18 +1,20 @@
 import { useEffect, useState } from "react";
 import { ElderPortal, CaregiverPortal } from "../../backend/DashboardData/dashboardData";
-import { PatientInfor } from "../../backend/DashboardData/patientInfor";
+import { PatientInfor, PatientStatistics } from "../../backend/DashboardData/patientInfor";
 import { logoTrans } from "../../images/Images";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { fetchFitbitData } from "../api/API";
 
 export default function Dashboard() {
-    const [alignment, setAlignment] = useState('elder');
-    const status = alignment == 'elder' ? ElderPortal : CaregiverPortal;
+    const [alignment, setAlignment] = useState('infor');
+    const status = alignment == 'infor' ? ElderPortal : ElderPortal;
     const [steps, setSteps] = useState("Loading...");
     const [heartRate, setHeartRate] = useState("Loading...");
     const [name, setName] = useState("Loading...");
     const [birthDate, setBirthDate] = useState("Loading...");
+    const [symtomps, setSymptons] = useState("No current data");
+    const [connection, setConnection] = useState("Not connected");
 
     useEffect(() => {
         async function loadingData() {
@@ -21,6 +23,7 @@ export default function Dashboard() {
             setHeartRate(heartRate);
             setName(name);
             setBirthDate(birthDate);
+            setConnection('Connected');
         }
         loadingData();
 
@@ -65,27 +68,60 @@ export default function Dashboard() {
                         exclusive
                         aria-label="Platform"
                     >
-                        <ToggleButton value="elder" sx={{ color: 'white' }}>Elder Portal</ToggleButton>
-                        <ToggleButton value="caregiver" sx={{ color: 'white' }}>Caregiver Portal</ToggleButton>
+                        <ToggleButton value="infor" sx={{ color: 'white' }}>Information</ToggleButton>
+                        <ToggleButton value="statistics" sx={{ color: 'white' }}>Statistics</ToggleButton>
                     </ToggleButtonGroup>
 
                 </div>
                 <div>
                     <ul className="flex justify-evenly">
-                        {alignment == 'elder' ?
+                        {alignment === 'infor' ?
                             (
-                                PatientInfor.map((data, index) => (
-                                    <li className="flex flex-col items-center" key={index}>
-                                        {data.name}
-                                        <span id={data.id}>
-                                            {data.id === "steps" ? steps : data.id === "heartRate" ? heartRate : data.id === "name" ? name : data.id === "birthDate" ? birthDate : ""}
-                                        </span>
-                                    </li>
-                                ))
+                                <div className="grid grid-cols-2 w-[50vw] h-[80vh]">
+                                    {/* Left side - Full name and Date of birth */}
+                                    <div className="flex flex-col items-start border-r border-gray-50">
+                                        {PatientInfor.filter(data => data.id === 'name' || data.id === 'birthDate').map((data, index) => (
+                                            <div key={index} className="flex flex-col mb-5">
+                                                <span className="font-bold text-lg">{data.name}</span>
+                                                <span className="mb-10">{data.id === 'name' ? name : birthDate}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                    {/* Right side - Symptons */}
+                                    <div className="flex flex-col items-end">
+                                        {PatientInfor.filter(data => data.id === 'symp').map((data, index) => (
+                                            <div className="flex flex-col mb-5" key={index}>
+                                                <span className="font-bold text-lg">{data.name}</span>
+                                                <span>{symtomps}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
                             )
                             :
                             (
-                                <></>
+                                <div className="grid grid-cols-2 w-[50vw] h-[80vh]">
+                                    {/* Left side - Heart rate and Steps */}
+                                    <div className="flex flex-col items-start border-r border-gray-50">
+                                        {PatientStatistics.filter(data => data.id === 'heartRate' || data.id === 'steps').map((data, index) => (
+                                            <div key={index} className="flex flex-col mb-5">
+                                                <span className="font-bold text-lg">{data.name}</span>
+                                                <span className="mb-10">{data.id === 'heartRate' ? heartRate : steps}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                    {/* Right side - Connection */}
+                                    <div className="flex flex-col items-end">
+                                        {PatientStatistics.filter(data => data.id === 'connect').map((data, index) => (
+                                            <div className="flex flex-col mb-5" key={index}>
+                                                <span className="font-bold text-lg">{data.name}</span>
+                                                <span>{connection}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
                             )
                         }
                     </ul>
