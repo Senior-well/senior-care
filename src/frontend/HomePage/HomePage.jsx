@@ -186,7 +186,7 @@ export default function HomePage() {
             </div>
             <div className="location">
                 <div className="location-wrapper">
-                    <img src={map} alt="map"></img>
+                    <img src={map}></img>
                     <span className="Ottawa">Ottawa</span>
                 </div>
                 <div className="location-info">

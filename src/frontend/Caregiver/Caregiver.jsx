@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHome, faUserMd, faClipboardList, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import "./Caregiver.sass";
 
 const CaregiverDashboard = () => {
@@ -7,7 +9,6 @@ const CaregiverDashboard = () => {
   );
   const [showForm, setShowForm] = useState(false);
   const [newElder, setNewElder] = useState("");
-  const [menuActive, setMenuActive] = useState(false); // For sidebar toggle
 
   useEffect(() => {
     localStorage.setItem("elders", JSON.stringify(elders));
@@ -22,91 +23,75 @@ const CaregiverDashboard = () => {
     setShowForm(false);
   };
 
-  const handleMenuToggle = () => {
-    setMenuActive(!menuActive); // Toggle sidebar state
-  };
-
   return (
-    <div className="caregiver-dashboard">
-      <div className={`navigation ${menuActive ? "active" : ""}`}>
-        <div className="menuToggle" onClick={handleMenuToggle}></div>
-        <ul>
-          <li className="list active">
-            <a href="/caregiver" style={{ "--clr": "#f44336" }}>
-              <span className="icon">
-                <ion-icon name="home-outline"></ion-icon>
-              </span>
-              <span className="text">Home</span>
-            </a>
+    <div className="flex items-center w-screen h-screen">
+      {/* Sidebar */}
+      <div className="bg-gradient-to-b from-[#1B1A55] to-[#310331] w-80 h-screen">
+        <ul className="flex flex-col justify-center">
+          <li className="h-24 flex items-center justify-center mb-20 text-white font-bold text-lg">
+            Caregiver Dashboard
           </li>
-          <li className="list">
-            <a href="/ai" style={{ "--clr": "#ffa117" }}>
-              <span className="icon">
-                <ion-icon name="person-outline"></ion-icon>
-              </span>
-              <span className="text">AI Dashboard</span>
-            </a>
-          </li>
-          <li className="list">
-            <a href="/reminder" style={{ "--clr": "#0fc70f" }}>
-              <span className="icon">
-                <ion-icon name="chatbubble-outline"></ion-icon>
-              </span>
-              <span className="text">Reminders & Appointments</span>
-            </a>
-          </li>
-          <li className="list">
-            <a href="/" style={{ "--clr": "#2196f3" }}>
-              <span className="icon">
-                <ion-icon name="camera-outline"></ion-icon>
-              </span>
-              <span className="text">Logout</span>
-            </a>
-          </li>
+          <a href="/caregiver">
+            <li className="px-16 py-4 rounded-sm hover:bg-purple-700 transition text-white flex items-center">
+              <FontAwesomeIcon icon={faHome} size="lg" />
+              <span className="ml-5">Home</span>
+            </li>
+          </a>
+          <a href="/ai">
+            <li className="px-16 py-4 rounded-sm hover:bg-purple-700 transition text-white flex items-center">
+              <FontAwesomeIcon icon={faUserMd} size="lg" />
+              <span className="ml-5">AI Dashboard</span>
+            </li>
+          </a>
+          <a href="/reminder">
+            <li className="px-16 py-4 rounded-sm hover:bg-purple-700 transition text-white flex items-center">
+              <FontAwesomeIcon icon={faClipboardList} size="lg" />
+              <span className="ml-5">Reminders</span>
+            </li>
+          </a>
+          <a href="/">
+            <li className="px-16 py-4 rounded-sm hover:bg-red-600 transition text-white flex items-center">
+              <FontAwesomeIcon icon={faSignOutAlt} size="lg" />
+              <span className="ml-5">Logout</span>
+            </li>
+          </a>
         </ul>
       </div>
 
-      <main>
-  <section className="dashboard">
-    <h2>Your Elders</h2>
-    <ul className="elders-list">
-      {elders.map((elder, index) => (
-        <li key={index}>
-          <a
-            href={`/elder/${elder.replace(/\s+/g, "-").toLowerCase()}`}
-            className="elder-link"
-          >
-            {elder}
-          </a>
-        </li>
-      ))}
-    </ul>
+      {/* Main Content */}
+      <div className="flex-1 bg-purple-900 bg-opacity-20 h-screen p-10 text-white">
+        <h2 className="text-2xl font-bold mb-5">Your Elders</h2>
+        <ul className="elders-list space-y-3">
+          {elders.map((elder, index) => (
+            <li key={index} className="bg-purple-700 p-3 rounded-lg">
+              <a href="/patient-infor" className="text-white hover:underline">{elder}</a>
+            </li>
+          ))}
+        </ul>
 
-    <button onClick={() => setShowForm(!showForm)} className="assign-button">
-      Assign Yourself
-    </button>
+        <button
+          onClick={() => setShowForm(!showForm)}
+          className="mt-5 px-4 py-2 bg-blue-500 rounded-lg hover:bg-blue-700"
+        >
+          Assign Yourself
+        </button>
 
-    {showForm && (
-      <form onSubmit={handleSubmit} className="assign-form">
-        <input
-          type="text"
-          placeholder="Elder's Full Name"
-          value={newElder}
-          onChange={(e) => setNewElder(e.target.value)}
-          required
-        />
-        <button type="submit">Submit</button>
-      </form>
-    )}
-  </section>
-</main>
-
-
-      <footer>
-        <div className="container">
-          <p>&copy; 2024 Elder Care Application. All rights reserved.</p>
-        </div>
-      </footer>
+        {showForm && (
+          <form onSubmit={handleSubmit} className="mt-5">
+            <input
+              type="text"
+              placeholder="Elder's Full Name"
+              value={newElder}
+              onChange={(e) => setNewElder(e.target.value)}
+              required
+              className="p-2 rounded-lg text-black"
+            />
+            <button type="submit" className="ml-3 px-4 py-2 bg-green-500 rounded-lg hover:bg-green-700">
+              Submit
+            </button>
+          </form>
+        )}
+      </div>
     </div>
   );
 };

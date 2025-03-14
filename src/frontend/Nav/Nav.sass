@@ -17,7 +17,7 @@ $iconColor: linear-gradient(45deg, #1B1A55, purple)
     transition: transform 0.2s ease-in-out     
 
     &.hide
-        transform: translateY(-100%)
+        transform: translateY(-150%)
 
     .menu-container
         display: $flexDisplay
@@ -125,18 +125,18 @@ $iconColor: linear-gradient(45deg, #1B1A55, purple)
                 text-decoration: none
                 font-size: 15px
 
-        .waitlist-container
-            padding: 9px 7px
-            border: 1px solid $darkWhite
-            border-radius: 15px
+        .employee-login
+            display: $flexDisplay
 
-            .waitlist
-                letter-spacing: 1px
-                display: inline-block
-                padding: 10px 20px
-                text-align: center
-                text-decoration: none
-                color: #fff
-                background: linear-gradient(45deg, $darkPurple, #7c4fba, $darkPurple)
-                font-size: 15px
-                border-radius: 10px
+            .login-container
+                display: $flexDisplay
+                flex-direction: column
+                align-items: center
+                
+                form
+                    display: flex
+                    flex-direction: column
+
+                    .login
+                        display: flex
+                        flex-direction: column

@@ -13,6 +13,8 @@ import AI from './frontend/AI/AI';
 //import Profile from './frontend/Profile/Profile';
 import Dashboard from './frontend/Dashboard/Dashboard';
 import Request from './frontend/pages/Request';
+import Contact from './frontend/Contact/Contact';
+import ElderReminders from './frontend/ElderReminders/ElderReminders';
 
 function Layout() {
   const location = useLocation(); // Get the current route
@@ -32,6 +34,8 @@ function Layout() {
           {/* <Route path="/profile" element={<Profile />} /> */}
           <Route path='/request' element={<Request />} />
           <Route path='/patient-infor' element={<Dashboard />} />
+          <Route path='/contacts' element={<Contact />} />
+          <Route path='/remindersMA' element={<ElderReminders />} />
         </Routes>
       </div>
 

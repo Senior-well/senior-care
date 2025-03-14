@@ -4,6 +4,7 @@ import { menuData } from "../../backend/MenuData/menuData";
 import MenuItems from "../Components/MenuItems/MenuItems";
 import Dropdown from "../Components/DropDownNav/DropDown";
 import { logoTrans } from "../../images/Images";
+import EmployeeData from "../../backend/database/EmployeeData";
 
 export default function Nav() {
     const [dropdown, setDropdown] = useState({ visible: false, submenus: [] });
@@ -62,10 +63,7 @@ export default function Nav() {
                         />)
                     }
                 </ul>
-
-                <div className="waitlist-container">
-                    <a className="waitlist" href="#">Join waitlist</a>
-                </div>
+                <EmployeeData />
             </div>
         </nav>
     );
