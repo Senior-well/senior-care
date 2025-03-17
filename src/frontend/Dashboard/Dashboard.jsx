@@ -3,8 +3,10 @@ import { ElderPortal, CaregiverPortal } from "../../backend/DashboardData/dashbo
 import { PatientInfor, PatientStatistics } from "../../backend/DashboardData/patientInfor";
 import { logoTrans } from "../../images/Images";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { ToggleButton, ToggleButtonGroup, Button } from "@mui/material";
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { fetchFitbitData } from "../api/API";
+import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
     const [alignment, setAlignment] = useState('infor');
@@ -14,16 +16,22 @@ export default function Dashboard() {
     const [name, setName] = useState("Loading...");
     const [birthDate, setBirthDate] = useState("Loading...");
     const [symtomps, setSymptons] = useState("No current data");
-    const [connection, setConnection] = useState("Not connected");
+    const [connection, setConnection] = useState("Connected");
+    const navigate = useNavigate();
 
     useEffect(() => {
         async function loadingData() {
             const { steps, heartRate, name, birthDate } = await fetchFitbitData();
-            setSteps(steps);
-            setHeartRate(heartRate);
-            setName(name);
-            setBirthDate(birthDate);
-            setConnection('Connected');
+            if (steps && heartRate && name && birthDate) {
+                setSteps(steps);
+                setHeartRate(heartRate);
+                setName(name);
+                setBirthDate(birthDate);
+                setConnection('Connected');
+            }
+            else {
+                setConnection('Not connected');
+            }
         }
         loadingData();
 
@@ -78,8 +86,19 @@ export default function Dashboard() {
                         {alignment === 'infor' ?
                             (
                                 <div className="grid grid-cols-2 w-[50vw] h-[80vh]">
-                                    {/* Left side - Full name and Date of birth */}
+                                    {/* Left side - Image profile, Full name and Date of birth */}
                                     <div className="flex flex-col items-start border-r border-gray-50">
+                                        <div className="flex flex-col mb-5">
+                                            <Button
+                                                component="label"
+                                                role={undefined}
+                                                variant="contained"
+                                                tabIndex={-1}
+                                                startIcon={<CloudUploadIcon />}
+                                            >
+                                                Upload image
+                                            </Button>
+                                        </div>
                                         {PatientInfor.filter(data => data.id === 'name' || data.id === 'birthDate').map((data, index) => (
                                             <div key={index} className="flex flex-col mb-5">
                                                 <span className="font-bold text-lg">{data.name}</span>
