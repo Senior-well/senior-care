@@ -6,8 +6,8 @@ import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { fetchFitbitData } from "../api/API";
 
 export default function Dashboard() {
-    const [alignment, setAlignment] = useState('elder');
-    const status = alignment == 'elder' ? PatientData : PatientHealthData;
+    const [alignment, setAlignment] = useState("elder");
+    const status = alignment === "elder" ? PatientData : PatientHealthData;
     const [steps, setSteps] = useState("Loading...");
     const [heartRate, setHeartRate] = useState("Loading...");
     const [glucose, setGlucose] = useState("Loading...");
@@ -18,6 +18,8 @@ export default function Dashboard() {
     const [email, setEmail] = useState("Loading...");
     const [phone, setPhone] = useState("Loading...");
     const [ehrFile, setEhrFile] = useState(null);
+
+    const HEART_RATE_THRESHOLD = 50; // Set threshold for emergency alert
 
     useEffect(() => {
         async function loadingData() {
@@ -31,6 +33,11 @@ export default function Dashboard() {
             setBatteryLife(batteryLife);
             setEmail(email);
             setPhone(phone);
+
+            // Emergency alert check
+            if (heartRate > HEART_RATE_THRESHOLD) {
+                alert(`⚠️ Emergency Alert! High Heart Rate Detected: ${heartRate} BPM`);
+            }
         }
         loadingData();
 
@@ -40,7 +47,7 @@ export default function Dashboard() {
     }, []);
 
     const handleChange = (event, newAlignment) => {
-        if (newAlignment != null) {
+        if (newAlignment !== null) {
             setAlignment(newAlignment);
         }
     };
@@ -55,7 +62,7 @@ export default function Dashboard() {
             <div className="bg-gradient-to-b from-[#1B1A55] to-[#310331] w-80 h-screen">
                 <ul className="flex flex-col justify-center">
                     <li className="h-24 flex items-center justify-center mb-20">
-                        <img src={logoTrans} className="h-10 rotate-90"></img>
+                        <img src={logoTrans} className="h-10 rotate-90" alt="Senior Care Logo" />
                         <span className="ml-2 font-bold">Senior Care</span>
                     </li>
                     {status.map((data, index) => (
@@ -79,13 +86,13 @@ export default function Dashboard() {
                         exclusive
                         aria-label="Platform"
                     >
-                        <ToggleButton value="elder" sx={{ color: 'white' }}>Elder Information</ToggleButton>
-                        <ToggleButton value="caregiver" sx={{ color: 'white' }}>Elder Health Data</ToggleButton>
+                        <ToggleButton value="elder" sx={{ color: "white" }}>Elder Information</ToggleButton>
+                        <ToggleButton value="caregiver" sx={{ color: "white" }}>Elder Health Data</ToggleButton>
                     </ToggleButtonGroup>
                 </div>
                 <div>
                     <ul className="flex justify-evenly">
-                        {alignment == 'elder' ? (
+                        {alignment === "elder" ? (
                             <>
                                 <li className="flex flex-col items-center">Full Name: {name}</li>
                                 <li className="flex flex-col items-center">Connection: {connection}</li>
@@ -96,7 +103,11 @@ export default function Dashboard() {
                         ) : (
                             <>
                                 <li className="flex flex-col items-center">Steps: {steps}</li>
-                                <li className="flex flex-col items-center">Heart Rate: {heartRate}</li>
+                                <li 
+                                    className={`flex flex-col items-center p-2 rounded ${heartRate > HEART_RATE_THRESHOLD ? "border-4 border-red-500" : ""}`}
+                                >
+                                    Heart Rate: {heartRate} BPM
+                                </li>
                                 <li className="flex flex-col items-center">Glucose Level: {glucose}</li>
                                 <li className="flex flex-col items-center">Blood Oxygen: {oxygen}</li>
                             </>
@@ -106,7 +117,9 @@ export default function Dashboard() {
                 <div className="flex flex-col items-center mt-10">
                     <input type="file" accept=".pdf,.doc,.docx" onChange={handleFileUpload} />
                     {ehrFile && (
-                        <a href={URL.createObjectURL(ehrFile)} target="_blank" rel="noopener noreferrer" className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">View EHR</a>
+                        <a href={URL.createObjectURL(ehrFile)} target="_blank" rel="noopener noreferrer" className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">
+                            View EHR
+                        </a>
                     )}
                 </div>
             </div>
