@@ -1,6 +1,6 @@
 // Get date in YYYY-MM-DD format
 const date = new Date();
-date.setDate(date.getDate() - 1); // Specify the date (today '- 1')
+date.setDate(date.getDate()); // Specify the date (today)
 const formattedDate = date.toISOString().split("T")[0];
 console.log(formattedDate, date)
 

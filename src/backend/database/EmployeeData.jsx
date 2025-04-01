@@ -23,6 +23,7 @@ export default function EmployeeData() {
             }
         } else {
             setStatus('Login failed!');
+            e.preventDefault();
         }
     }
 

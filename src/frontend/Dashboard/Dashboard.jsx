@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import { PatientData, PatientHealthData } from "../../backend/DashboardData/dashboardData";
 import { logoTrans } from "../../images/Images";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { ToggleButton, ToggleButtonGroup, Button } from "@mui/material";
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { fetchFitbitData } from "../api/API";
+import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
     const [alignment, setAlignment] = useState('elder');
