@@ -1,0 +1,40 @@
+$backGroundColor: linear-gradient(to bottom, #2D2A84 12%, #800080)
+$displayFlex: flex
+$flexWrap: wrap
+
+.login
+    display: $displayFlex
+    flex-wrap: $flexWrap
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    height: 700px
+    margin: 10px
+
+.login-page
+    background: $backGroundColor
+    width: 500px
+    height: 600px
+    border-radius: 20px 70px
+
+    .content
+        padding: 10px
+
+        h2
+            text-align: center
+            margin-bottom: 25px
+
+        form
+            display: $displayFlex
+            flex-direction: column
+            align-items: center
+            justify-content: center
+
+        .button
+            display: flex
+            justify-content: center
+
+            button
+                width: 350px
+                font-weight: bold
+                color: cyan

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { ElderPortal, CaregiverPortal } from "../../backend/DashboardData/dashboardData";
-import { PatientInfor, PatientStatistics } from "../../backend/DashboardData/patientInfor";
+import { PatientData, PatientHealthData } from "../../backend/DashboardData/dashboardData";
 import { logoTrans } from "../../images/Images";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ToggleButton, ToggleButtonGroup, Button } from "@mui/material";
@@ -9,33 +8,35 @@ import { fetchFitbitData } from "../api/API";
 import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
-    const [alignment, setAlignment] = useState('infor');
-    const status = alignment == 'infor' ? ElderPortal : ElderPortal;
+    const [alignment, setAlignment] = useState('elder');
+    const status = alignment == 'elder' ? PatientData : PatientHealthData;
     const [steps, setSteps] = useState("Loading...");
     const [heartRate, setHeartRate] = useState("Loading...");
+    const [glucose, setGlucose] = useState("Loading...");
+    const [oxygen, setOxygen] = useState("Loading...");
     const [name, setName] = useState("Loading...");
-    const [birthDate, setBirthDate] = useState("Loading...");
-    const [symtomps, setSymptons] = useState("No current data");
-    const [connection, setConnection] = useState("Connected");
-    const navigate = useNavigate();
+    const [connection, setConnection] = useState("Loading...");
+    const [batteryLife, setBatteryLife] = useState("Loading...");
+    const [email, setEmail] = useState("Loading...");
+    const [phone, setPhone] = useState("Loading...");
+    const [ehrFile, setEhrFile] = useState(null);
 
     useEffect(() => {
         async function loadingData() {
-            const { steps, heartRate, name, birthDate } = await fetchFitbitData();
-            if (steps && heartRate && name && birthDate) {
-                setSteps(steps);
-                setHeartRate(heartRate);
-                setName(name);
-                setBirthDate(birthDate);
-                setConnection('Connected');
-            }
-            else {
-                setConnection('Not connected');
-            }
+            const { steps, heartRate, glucose, oxygen, name, connection, batteryLife, email, phone } = await fetchFitbitData();
+            setSteps(steps);
+            setHeartRate(heartRate);
+            setGlucose(glucose);
+            setOxygen(oxygen);
+            setName(name);
+            setConnection(connection);
+            setBatteryLife(batteryLife);
+            setEmail(email);
+            setPhone(phone);
         }
         loadingData();
 
-        // Refresh heart rate every 60 seconds
+        // Refresh health data every 60 seconds
         const interval = setInterval(loadingData, 60000);
         return () => clearInterval(interval);
     }, []);
@@ -44,6 +45,10 @@ export default function Dashboard() {
         if (newAlignment != null) {
             setAlignment(newAlignment);
         }
+    };
+
+    const handleFileUpload = (event) => {
+        setEhrFile(event.target.files[0]);
     };
 
     return (
@@ -76,74 +81,35 @@ export default function Dashboard() {
                         exclusive
                         aria-label="Platform"
                     >
-                        <ToggleButton value="infor" sx={{ color: 'white' }}>Information</ToggleButton>
-                        <ToggleButton value="statistics" sx={{ color: 'white' }}>Statistics</ToggleButton>
+                        <ToggleButton value="elder" sx={{ color: 'white' }}>Elder Information</ToggleButton>
+                        <ToggleButton value="caregiver" sx={{ color: 'white' }}>Elder Health Data</ToggleButton>
                     </ToggleButtonGroup>
-
                 </div>
                 <div>
                     <ul className="flex justify-evenly">
-                        {alignment === 'infor' ?
-                            (
-                                <div className="grid grid-cols-2 w-[50vw] h-[80vh]">
-                                    {/* Left side - Image profile, Full name and Date of birth */}
-                                    <div className="flex flex-col items-start border-r border-gray-50">
-                                        <div className="flex flex-col mb-5">
-                                            <Button
-                                                component="label"
-                                                role={undefined}
-                                                variant="contained"
-                                                tabIndex={-1}
-                                                startIcon={<CloudUploadIcon />}
-                                            >
-                                                Upload image
-                                            </Button>
-                                        </div>
-                                        {PatientInfor.filter(data => data.id === 'name' || data.id === 'birthDate').map((data, index) => (
-                                            <div key={index} className="flex flex-col mb-5">
-                                                <span className="font-bold text-lg">{data.name}</span>
-                                                <span className="mb-10">{data.id === 'name' ? name : birthDate}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-
-                                    {/* Right side - Symptons */}
-                                    <div className="flex flex-col items-end">
-                                        {PatientInfor.filter(data => data.id === 'symp').map((data, index) => (
-                                            <div className="flex flex-col mb-5" key={index}>
-                                                <span className="font-bold text-lg">{data.name}</span>
-                                                <span>{symtomps}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            )
-                            :
-                            (
-                                <div className="grid grid-cols-2 w-[50vw] h-[80vh]">
-                                    {/* Left side - Heart rate and Steps */}
-                                    <div className="flex flex-col items-start border-r border-gray-50">
-                                        {PatientStatistics.filter(data => data.id === 'heartRate' || data.id === 'steps').map((data, index) => (
-                                            <div key={index} className="flex flex-col mb-5">
-                                                <span className="font-bold text-lg">{data.name}</span>
-                                                <span className="mb-10">{data.id === 'heartRate' ? heartRate : steps}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-
-                                    {/* Right side - Connection */}
-                                    <div className="flex flex-col items-end">
-                                        {PatientStatistics.filter(data => data.id === 'connect').map((data, index) => (
-                                            <div className="flex flex-col mb-5" key={index}>
-                                                <span className="font-bold text-lg">{data.name}</span>
-                                                <span>{connection}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            )
-                        }
+                        {alignment == 'elder' ? (
+                            <>
+                                <li className="flex flex-col items-center">Full Name: {name}</li>
+                                <li className="flex flex-col items-center">Connection: {connection}</li>
+                                <li className="flex flex-col items-center">Watch Battery Life: {batteryLife}</li>
+                                <li className="flex flex-col items-center">Email: {email}</li>
+                                <li className="flex flex-col items-center">Phone: {phone}</li>
+                            </>
+                        ) : (
+                            <>
+                                <li className="flex flex-col items-center">Steps: {steps}</li>
+                                <li className="flex flex-col items-center">Heart Rate: {heartRate}</li>
+                                <li className="flex flex-col items-center">Glucose Level: {glucose}</li>
+                                <li className="flex flex-col items-center">Blood Oxygen: {oxygen}</li>
+                            </>
+                        )}
                     </ul>
+                </div>
+                <div className="flex flex-col items-center mt-10">
+                    <input type="file" accept=".pdf,.doc,.docx" onChange={handleFileUpload} />
+                    {ehrFile && (
+                        <a href={URL.createObjectURL(ehrFile)} target="_blank" rel="noopener noreferrer" className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">View EHR</a>
+                    )}
                 </div>
             </div>
         </div>
