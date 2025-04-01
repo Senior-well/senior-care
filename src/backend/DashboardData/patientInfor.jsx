@@ -10,7 +10,10 @@ export const PatientInfor = [
     {
         name: 'Symptons',
         id: 'symp'
-    },
+    }
+];
+
+export const PatientStatistics = [
     {
         name: 'Heart rate',
         id: 'heartRate'
@@ -21,7 +24,6 @@ export const PatientInfor = [
     },
     {
         name: 'Connection',
-        id: ''
+        id: 'connect'
     }
-
 ];
