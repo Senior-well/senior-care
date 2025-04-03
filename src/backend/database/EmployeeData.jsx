@@ -21,6 +21,7 @@ export default function EmployeeData() {
             } else if (employeeLogin === '2') {
                 navigate('/patient-infor');
             }
+          
         } else {
             setStatus('Login failed!');
             e.preventDefault();
