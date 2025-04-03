@@ -2,15 +2,26 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function EmployeeData() {
-    const employeeId = '1', employeePassword = '1';
+    const credentials = {
+        '1': '1', // Employee login
+        '2': '2'  // Elder login
+    };
+
     const [employeeLogin, setEmployeeLogin] = useState('');
     const [password, setPassword] = useState('');
     const [status, setStatus] = useState('');
     const navigate = useNavigate();
 
     const handleLogin = (e) => {
-        if (employeeLogin === employeeId && password === employeePassword) {
-            navigate('/patient-infor');
+        e.preventDefault();
+        if (credentials[employeeLogin] === password) {
+            setStatus('Login successful!');
+            if (employeeLogin === '1') {
+                navigate('/caregiver');
+            } else if (employeeLogin === '2') {
+                navigate('/patient-infor');
+            }
+          
         } else {
             setStatus('Login failed!');
             e.preventDefault();
@@ -23,11 +34,20 @@ export default function EmployeeData() {
                 <form onSubmit={handleLogin}>
                     <div className="login">
                         <label htmlFor="employeeID">Employee ID</label>
-                        <input className="text-black" type="text" id="employeeID" placeholder="#####" onChange={(e) => setEmployeeLogin(e.target.value)}/>
+                        <input 
+                            type="text" 
+                            id="employeeID" 
+                            placeholder="####" 
+                            onChange={(e) => setEmployeeLogin(e.target.value)}
+                        />
                     </div>
                     <div className="login">
                         <label htmlFor="password">Password</label>
-                        <input className="text-black" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
+                        <input 
+                            type="password" 
+                            placeholder="Password" 
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
                     </div>
                     <button type="submit">Login</button>
                 </form>

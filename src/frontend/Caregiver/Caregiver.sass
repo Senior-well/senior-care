@@ -1,0 +1,85 @@
+// Variables for the colors
+$dark-purple-start: #3e1e69 // Dark purple color start
+$dark-purple-end: #1a0a34 // Dark purple color end
+$background-color: #2f323f // Sidebar background color
+$hover-background-color: lighten(#1e232f, 10%) // Hover background color
+
+// Apply the gradient background to the whole page for Caregiver Dashboard only
+.caregiver-dashboard
+  display: flex
+  justify-content: flex-start // Sidebar should stay fixed on the left
+  height: 100vh
+  background: linear-gradient(to bottom, $dark-purple-start, $dark-purple-end)
+  border: 2px solid black // Black outline around the whole caregiver-dashboard
+
+  .navigation
+    position: fixed
+    top: 0
+    left: 0
+    width: 250px
+    height: 100vh
+    background: $background-color
+    background: linear-gradient(to bottom, $dark-purple-start, $dark-purple-end) // Gradient on sidebar
+    transition: all 0.3s ease-in-out
+    border: 2px solid black // Black outline around the navigation
+
+  .menuToggle
+    position: absolute
+    top: 20px
+    left: 230px
+    width: 30px
+    height: 30px
+    background: #fff
+    cursor: pointer
+    transition: all 0.3s ease
+    border-radius: 50%
+    display: none
+
+  ul
+    list-style: none
+    padding: 0
+    margin: 0
+    margin-top: 50px
+
+  .list
+    width: 100%
+
+    &.active
+      background-color: #1e232f
+
+    a
+      display: flex
+      align-items: center
+      text-decoration: none
+      padding: 10px 20px
+      color: #fff
+      transition: background 0.3s ease
+      position: relative
+
+      span.icon
+        margin-right: 15px
+        font-size: 20px
+
+      span.text
+        font-size: 1.2rem
+
+      &:hover
+        background: $hover-background-color
+
+      &:hover::after
+        content: ''
+        position: absolute
+        left: 0
+        top: 0
+        width: 5px
+        height: 100%
+        background-color: #333 // Active link color
+
+      &::after
+        content: ''
+        position: absolute
+        left: 0
+        top: 0
+        width: 5px
+        height: 100%
+        background-color: transparent
